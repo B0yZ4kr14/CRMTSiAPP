@@ -1,0 +1,38 @@
+[Unit]
+Description=CRMTSiAPP durable webhook worker
+After=network-online.target postgresql.service crmtsiapp.service
+Wants=network-online.target
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/tsi-stack/apps/crm/crmtsiapp/local-crm
+EnvironmentFile=/etc/crmtsiapp/crmtsiapp.env
+ExecStart=/usr/bin/node /opt/tsi-stack/apps/crm/crmtsiapp/local-crm/webhook-worker-main.js
+Restart=always
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+ProtectKernelLogs=true
+LockPersonality=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+AmbientCapabilities=
+ReadWritePaths=/run /var/lib/crmtsiapp
+
+[Install]
+WantedBy=multi-user.target

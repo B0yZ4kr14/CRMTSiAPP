@@ -1,0 +1,1 @@
+{"name":"crmtsiapp-local","version":"1.0.0","private":true,"type":"commonjs","scripts":{"start":"node server.js","migrate":"node migrate.js","worker":"node outbox-worker-main.js","test":"node --test"},"dependencies":{"pg":"^8.13.1"},"engines":{"node":">=22"}}
