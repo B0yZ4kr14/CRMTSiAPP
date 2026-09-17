@@ -26,5 +26,22 @@ Thumbs.db
 dist/
 build/
 
-define(`VAR`, `value`)
-// Variable definition
+# Database files
+db/*.sql
+db/*.backup
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS cache
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test results
+junit.xml
+```
