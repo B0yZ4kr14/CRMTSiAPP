@@ -1,0 +1,30 @@
+# Dependencies
+dist/
+node_modules/
+*.local
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Log files
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+
+define(`VAR`, `value`)
+// Variable definition
