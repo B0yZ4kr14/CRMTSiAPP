@@ -33,6 +33,13 @@
 - Verificação local atual: `npm test` 493 testes, 443 pass, 0 fail, 50 skipped; syntax checks e `git diff --check` passam.
 - Commit/PR e validação final remota ainda pendentes.
 
+## 2026-09-20 — Frontend operacional sincronizado com os módulos atuais
+- A navegação principal agora inclui `Status operacional` e aponta `Configurações` para `/settings/start`.
+- Relatórios e status usam o mesmo shell visual autenticado do restante do sistema, incluindo sidebar, navegação mobile e destaque de rota ativa.
+- `/settings/start` foi convertido em painel de atalhos executáveis para canais, equipe, filas, templates, automações, privacidade, segurança e aparência; o formulário real continua em `/settings/channels`.
+- Testes de rota e renderização foram ampliados para proteger shell, destaque de rota e atalhos. Verificação local atual: 493 testes, 443 pass, 0 fail, 50 skipped; `git diff --check` passa.
+- A alteração ainda não foi commitada nem implantada no `vpstsiapp`; o próximo passo é commit, deploy tmux idempotente e validação independente HTTPS/Chromium.
+
 ## 2026-09-19 — US2 concluída
 - T050–T078 concluídas com RED/GREEN: state machine de setup (8 testes), contratos HTTP `/setup/*` (13 testes), schemas de provedores (11 testes), envelope criptográfico de segredos (15 testes), credenciais PostgreSQL (5 testes), validação de segurança (15 testes), upgrade idempotente (3 testes), schema `installation_setup` + `provider_configs` (domain-schema.js), setup-validation, setup-service, bootstrap-admin refactor, rotas HTTP `/setup/*`, credential-service AES-256-GCM, provider-registry/validation/service/migration, provider routes, Wizard UI, provider panel, setup-wizard.js, provider-settings.js, route-capabilities, evidência us2-setup-providers.json, traceability.json.
 - Testes PostgreSQL usam skip condicional — suíte completa: 345 pass, 45 skip, 0 fail (`npm run test`).

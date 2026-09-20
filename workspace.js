@@ -74,19 +74,24 @@ function renderCampaigns(state) {
 function renderAutomation(state) {
   return `<header class="page-header"><div><p class="eyebrow">AUTOMAÇÃO</p><h1>Automações</h1></div></header><section class="panel settings-panel"><div class="empty-list"><strong>Automação auditável</strong><span>Regras de gatilho, condição e ação serão listadas aqui.</span></div></section>`;
 }
-function renderWorkspace(view, state = {}) {
-  const active = view.startsWith('settings') ? 'settings' : view; let body;
-  if (view === 'dashboard') body = renderDashboard(state);
-  else if (view === 'segments') body = renderSegments(state);
-  else if (view === 'campaigns') body = renderCampaigns(state);
-  else if (view === 'automation') body = renderAutomation(state);
-  else if (view === 'ia') body = renderIA(state);
-  else if (view === 'reports') body = renderReports(state);
-  else if (view === 'connections') body = renderConnections(state);
-  else if (view === 'contacts' || view === 'leads') body = renderCrm(view, state);
-  else if (view.startsWith('settings/')) body = renderSettings(view.slice(9), state);
-  else if (view === 'settings') body = renderSettings('channels', state);
-  else body = renderInbox(state);
+function renderWorkspaceBody(view, state = {}) {
+  if (view === 'dashboard') return renderDashboard(state);
+  if (view === 'segments') return renderSegments(state);
+  if (view === 'campaigns') return renderCampaigns(state);
+  if (view === 'automation') return renderAutomation(state);
+  if (view === 'ia') return renderIA(state);
+  if (view === 'reports') return renderReports(state);
+  if (view === 'connections') return renderConnections(state);
+  if (view === 'contacts' || view === 'leads') return renderCrm(view, state);
+  if (view.startsWith('settings/')) return renderSettings(view.slice(9), state);
+  if (view === 'settings') return renderSettings('start', state);
+  return renderInbox(state);
+}
+function renderWorkspaceFrame(view, body) {
+  const active = view.startsWith('settings') ? 'settings' : view;
   return `<div class="workspace">${sidebar(active)}<main class="workspace-main">${body}</main></div>`;
 }
-module.exports = { deliveryLabel, renderWorkspace };
+function renderWorkspace(view, state = {}) {
+  return renderWorkspaceFrame(view, renderWorkspaceBody(view, state));
+}
+module.exports = { deliveryLabel, renderWorkspace, renderWorkspaceFrame };

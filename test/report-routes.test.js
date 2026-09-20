@@ -11,6 +11,9 @@ test('reports route renders tenant-scoped persisted metrics and its CSV export h
     assert.match(html, /Relatórios operacionais/);
     assert.match(html, /Conversas abertas/);
     assert.match(html, /Exportar CSV/);
+    assert.match(html, /<aside class="sidebar" aria-label="Navegação principal">/);
+    assert.match(html, /href="\/settings\/start"[^>]*>Configurações/);
+    assert.match(html, /class="nav-item active"[^>]*aria-current="page"[^>]*>Relatórios/);
     const csv = await request('/reports/export.csv?from=2026-09-19T00%3A00%3A00.000Z&to=2026-09-20T00%3A00%3A00.000Z&channel=waha');
     assert.equal(csv.status, 200);
     assert.match(csv.headers.get('content-type'), /text\/csv/);

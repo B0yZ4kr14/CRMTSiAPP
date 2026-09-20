@@ -25,8 +25,13 @@ test('renders connection health and QR configuration state without exposing a se
   assert.doesNotMatch(html, /API_KEY|password|secret/i);
 });
 
-test('renders WhatsApp configuration fields for the local provider model', () => {
-  const html = renderWorkspace('settings', { provider: 'waha', configured: false });
+test('renders settings overview as executable UI shortcuts and keeps channel form reachable', () => {
+  const overview = renderWorkspace('settings', { provider: 'waha', configured: false });
+  assert.match(overview, /settings-quick-links/);
+  assert.match(overview, /href="\/settings\/channels"/);
+  assert.match(overview, /href="\/settings\/automation"/);
+
+  const html = renderWorkspace('settings/channels', { provider: 'waha', configured: false });
   assert.match(html, /WhatsApp/);
   assert.match(html, /Provedor de canal/);
   assert.match(html, /WAHA compatível/);
