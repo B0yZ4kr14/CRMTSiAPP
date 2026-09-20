@@ -31,7 +31,9 @@
 - Revisão independente encontrou e corrigiu: inicialização incorreta de rotas/services assíncronos, bootstrap sem validação do segredo, contagem de versão de credenciais, script PostgreSQL com URL inválida e setup routes executadas antes da autenticação.
 - Artefatos locais gerados (`graphify-out/`, `findings.md`, `evidence_temp.json`, `ORCHESTRATION_PLAN.md`, `REMediation-STATUS-*`) foram excluídos do candidato por `.gitignore`.
 - Verificação local atual: `npm test` 493 testes, 443 pass, 0 fail, 50 skipped; syntax checks e `git diff --check` passam.
-- Commit/PR e validação final remota ainda pendentes.
+- Commit realizado em `73625ad` e release publicada em `main`.
+- Deploy remoto concluído via tmux `tsi-crmtsiapp-ui-shell-deploy`; backup `/opt/tsi-stack/backups/crmtsiapp-before-ui-shell-20260920T185411Z`, `MIGRATION_OK` e três serviços ativos.
+- Validação independente via tmux `tsi-crmtsiapp-ui-shell-final`: HTTPS `/live`, `/ready`, login shell e `NRestarts=0` passaram.
 
 ## 2026-09-20 — Frontend operacional sincronizado com os módulos atuais
 - A navegação principal agora inclui `Status operacional` e aponta `Configurações` para `/settings/start`.
