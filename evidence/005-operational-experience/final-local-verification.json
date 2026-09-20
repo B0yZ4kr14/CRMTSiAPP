@@ -1,0 +1,26 @@
+{
+  "feature": "005-operational-experience",
+  "status": "ready-for-production",
+  "generatedAt": "2026-09-20T03:30:00.000Z",
+  "verificationCommand": "npm run test",
+  "tests": { "total": 456, "passed": 411, "failed": 0, "skipped": 45, "todo": 0, "cancelled": 0 },
+  "performanceProfile": {
+    "mode": "deterministic-model",
+    "connections": 100,
+    "eventsPerSecond": 20,
+    "durationSeconds": 600,
+    "maxPayloadBytes": 8192,
+    "replayEventsPerTenant": 6000,
+    "test": "test/operational-experience-performance.test.js"
+  },
+  "browser": {
+    "executable": "/usr/bin/chromium",
+    "playwright": "installed exact dev dependency",
+    "tests": ["test/browser-visual-editors.test.js", "test/browser-campaign-preview-sandbox.test.js", "test/browser-operational-experience.test.js"],
+    "status": "passed"
+  },
+  "limitations": [
+    "PostgreSQL-real suites remain skipped when TEST_DATABASE_URL or TEST_DATABASE_ADMIN_URL is absent.",
+    "Remote deployment and rollback evidence remain pending until executed on vpstsiapp using canonical tmux sessions."
+  ]
+}

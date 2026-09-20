@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "feature": "fixture-feature",
+  "candidateRelease": "fixture-release",
+  "maxEvidenceAgeSeconds": 3600,
+  "requiredCoverage": ["FR-FIXTURE"],
+  "suites": [
+    {
+      "id": "G02-unit-domain",
+      "phase": "fixture",
+      "required": true,
+      "command": ["node", "--test", "test/fixture.test.js"],
+      "requiredEnvironment": [],
+      "timeoutMs": 30000,
+      "evidencePath": "test/fixtures/acceptance/passing-evidence.json",
+      "allowExternalBlock": false,
+      "requirements": ["FR-FIXTURE"]
+    }
+  ]
+}

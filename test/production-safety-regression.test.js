@@ -64,6 +64,7 @@ test('provider calls are time bounded and reject success responses without a pro
     const channel = Adapter === WahaAdapter
       ? { config: { baseUrl: 'https://waha.example', sessionName: 'support', apiKey: 'key' } }
       : { config: { graphVersion: 'v23.0', phoneNumberId: '123', accessToken: 'token' } };
+    if (Adapter === WahaAdapter) adapter.dispatcherFactory = async () => ({ close: async () => {} });
     await assert.rejects(() => adapter.sendText({ channel, to: '5511999999999', body: 'Olá' }), /message id|provider/i);
     assert.ok(options.signal instanceof AbortSignal);
   }
@@ -76,28 +77,26 @@ test('schema migration does not bootstrap, reactivate, promote, or reset an admi
 });
 
 test('assigned roles must resolve deterministically or fail closed', () => {
-  assert.equal(effectiveRole({ legacyRole: 'viewer', assignedRoles: ['viewer', 'admin'] }), 'viewer');
+  assert.equal(effectiveRole({ legacyRole: 'viewer', assignedRoles: ['viewer', 'admin'] }), null);
   assert.equal(effectiveRole({ legacyRole: 'admin', assignedRoles: ['admin', 'admin'] }), 'admin');
 });
 
 test('assigned roles resolve deterministically and invalid role returns null', () => {
-  assert.equal(effectiveRole({ legacyRole: 'viewer', assignedRoles: ['viewer', 'admin'] }), 'viewer');
+  assert.equal(effectiveRole({ legacyRole: 'viewer', assignedRoles: ['viewer', 'admin'] }), null);
   assert.equal(effectiveRole({ legacyRole: 'admin', assignedRoles: ['admin', 'admin'] }), 'admin');
   assert.equal(effectiveRole({ legacyRole: 'manager', assignedRoles: [] }), 'manager');
   assert.equal(effectiveRole({ legacyRole: 'unknown', assignedRoles: [] }), null);
   assert.equal(effectiveRole({ legacyRole: 'viewer', assignedRoles: ['invalid'] }), null);
   for (let i = 0; i < 10; i++) {
-    assert.equal(effectiveRole({ legacyRole: 'agent', assignedRoles: ['agent', 'manager'] }), 'agent');
+    assert.equal(effectiveRole({ legacyRole: 'agent', assignedRoles: ['agent', 'manager'] }), null);
   }
 });
 
-test('authenticated read routes are present and every mutation declares a capability', () => {
+test('authenticated read routes declare explicit capabilities without a truthy bypass', () => {
   const capabilities = require('../route-capabilities').ROUTE_CAPABILITIES;
-  for (const route of ['GET /inbox', 'GET /inbox/:id', 'GET /connections']) assert.ok(capabilities[route] || true);
-  for (const [route, capability] of Object.entries(capabilities)) {
-    if (route.startsWith('GET ')) continue;
-    assert.ok(capability, `missing capability for ${route}`);
-  }
+  assert.equal(capabilities['GET /inbox'], 'conversation:read');
+  assert.equal(capabilities['GET /inbox/:id'], 'conversation:read');
+  assert.equal(capabilities['GET /connections'], 'channel:read');
 });
 
 test('webhook and outbox workers retain the explicitly accepted root runtime while preserving systemd hardening', () => {

@@ -1,0 +1,54 @@
+{
+  "feature": "US2 - Setup e Provedores",
+  "generatedAt": "2026-09-19T20:00:00.000Z",
+  "environment": {
+    "nodeVersion": "22.23.2",
+    "platform": "linux"
+  },
+  "tests": {
+    "unit": {
+      "total": 390,
+      "passed": 345,
+      "skipped": 45,
+      "failed": 0,
+      "durationMs": 1950441
+    },
+    "acceptance": {
+      "T050_setup_state_machine": { "status": "passed", "tests": 8, "coverage": ["bootstrap", "tenant_binding", "secrets_hash_only", "rate_limit", "provider_validation", "atomic_activation", "rollback", "activation_closed"] },
+      "T051_postgres_setup_activation": { "status": "skipped", "reason": "PostgreSQL não configurado", "tests": 4, "coverage": ["atomic_activation", "race_condition", "rollback", "tenant_isolation"] },
+      "T052_setup_http_contract": { "status": "passed", "tests": 13, "coverage": ["bootstrap_missing_secret", "bootstrap_invalid_secret", "bootstrap_already_done", "draft_unbootstrapped", "draft_unknown_provider", "draft_missing_fields", "validate_no_draft", "validate_rate_limit", "activate_invalid_state", "activate_closes_mutations", "bootstrap_tenant_binding"] },
+      "T053_provider_config_schema": { "status": "passed", "tests": 11, "coverage": ["unknown_provider", "missing_provider", "waha_required_fields", "meta_required_fields", "waha_baseurl_format", "meta_graph_version_format", "meta_phone_number_id_format", "string_types", "length_constraints", "extra_fields", "null_config"] },
+      "T054_provider_secret_envelope": { "status": "passed", "tests": 15, "coverage": ["encrypt_decrypt", "different_ciphertext", "wrong_password", "tampered_ciphertext", "truncated_envelope", "corrupted_base64", "rotation_preserves_plaintext", "rotation_wrong_old_password", "masked_hint_no_leak", "masked_hint_consistent", "masked_hint_different", "envelope_format", "pbkdf2_derivation", "aes_256_gcm", "invalid_key_length"] },
+      "T055_postgres_provider_credentials": { "status": "skipped", "reason": "PostgreSQL não configurado", "tests": 5, "coverage": ["tenant_isolation", "active_unique", "version_increment", "concurrent_promotion", "revoked_no_reactivate"] },
+      "T056_provider_validation_safety": { "status": "passed", "tests": 15, "coverage": ["ssrf_metadata", "ssrf_private_ip", "ssrf_localhost_allowed", "ssrf_dangerous_protocol", "ssrf_internal_ports", "config_redaction", "nested_objects", "error_sanitization", "timeout_simulation", "no_stack_traces", "malformed_urls", "credentials_in_url", "no_mutation"] },
+      "T057_postgres_provider_config_upgrade": { "status": "skipped", "reason": "PostgreSQL não configurado", "tests": 3, "coverage": ["legacy_migration_idempotent", "missing_legacy_keys", "preserve_version_credentials"] },
+      "T058_browser_setup_providers": { "status": "blocked", "reason": "Playwright não instalado" },
+      "T059_domain_schema": { "status": "implemented", "tables": ["installation_setup", "provider_configs"], "indexes": ["provider_configs_tenant_active_idx"], "columns": { "installation_setup": ["id", "tenant_id", "bootstrap_hash", "bootstrap_salt", "bootstrap_expires_at", "state", "version", "draft_config", "active_config", "secrets_hash", "created_at", "updated_at"], "provider_configs": ["id", "tenant_id", "provider", "config", "credentials_ciphertext", "credentials_version", "status", "activated_at", "rotated_at", "created_at", "updated_at"] } },
+      "T060_setup_validation": { "status": "implemented", "file": "modules/setup/setup-validation.js", "exports": ["validateProviderConfig", "validateWahaConfig", "redactConfig", "sanitizeError", "ALLOWED_PROVIDERS", "PROVIDER_SCHEMAS", "SECRET_FIELDS"] },
+      "T061_setup_service": { "status": "implemented", "file": "modules/setup/setup-service.js", "exports": ["createSetupService"], "methods": ["bootstrap", "verifyBootstrapSecret", "setDraftConfig", "validateDraft", "activate", "rotateBootstrapSecret", "getDraftConfig", "getActiveConfig", "getSetupStatus", "encryptCredentials", "decryptCredentials"] },
+      "T062_bootstrap_admin_refactor": { "status": "implemented", "file": "bootstrap-admin.js", "exports": ["ensureBootstrapAdmin", "ensureBootstrapAdminIdempotent", "hashPassword"], "features": ["advisory_lock", "transactional", "idempotent"] },
+      "T063_setup_service_atomic_activation": { "status": "implemented", "in_file": "modules/setup/setup-service.js", "method": "activate", "features": ["activating_state", "rollback_on_failure", "audit_log"] },
+      "T064_credential_service": { "status": "implemented", "file": "modules/providers/credential-service.js", "exports": ["createCredentialService"], "methods": ["storeCredential", "getCredential", "getCredentialMetadata", "rotateCredential", "revokeCredential", "listCredentials", "createMaskedHint"], "crypto": "AES-256-GCM + PBKDF2-SHA256" },
+      "T065_provider_registry": { "status": "implemented", "file": "modules/providers/provider-registry.js", "exports": ["ALLOWED_PROVIDERS", "PROVIDER_SCHEMAS", "getAdapter", "getAllowedProviders", "getProviderSchema", "validateProviderConfig", "validateProviderCredentials", "normalizeProviderConfig", "normalizeProviderCredentials"], "providers": ["waha", "meta"] },
+      "T066_provider_validation": { "status": "implemented", "file": "modules/providers/provider-validation.js", "exports": ["validateWahaEndpoint", "validateMetaEndpoint", "testProviderConnection", "testWahaConnection", "testMetaConnection", "sanitizeValidationError", "validateFullProviderSetup"], "ssrf_protection": ["metadata_endpoints", "private_ips", "protocols", "internal_ports"] },
+      "T067_provider_service": { "status": "implemented", "file": "modules/providers/provider-service.js", "exports": ["createProviderService"], "methods": ["listProviders", "getProvider", "createProvider", "activateProvider", "deactivateProvider", "rotateCredentials", "testProvider", "getProviderConfig", "getAllowedProvidersList"] },
+      "T068_provider_migration": { "status": "implemented", "file": "modules/providers/provider-migration.js", "exports": ["createProviderMigration"], "methods": ["migrateLegacyChannels", "migrateLegacySettings"] },
+      "T069_setup_routes": { "status": "implemented", "file": "modules/setup/routes.js", "exports": ["createSetupRoutes", "createProviderRoutes"], "endpoints": ["getSetupStatus", "bootstrapSetup", "setDraftConfig", "validateDraft", "activateSetup", "rotateBootstrapSecret", "migrateProviders", "listProviders", "getProvider", "createProvider", "activateProvider", "deactivateProvider", "rotateCredentials", "testProvider", "getAllowedProviders"] },
+      "T070_provider_routes": { "status": "implemented", "in_file": "modules/setup/routes.js" },
+      "T071_server_integration": { "status": "implemented", "file": "server.js", "integrated": ["setupRoutes", "providerRoutes", "masterKey", "bootstrapSecret"] },
+      "T072_setup_wizard_workspace": { "status": "implemented", "file": "modules/setup/workspace.js", "exports": ["renderSetupWizard", "renderProviderPanel"] },
+      "T073_provider_panel_workspace": { "status": "implemented", "in_file": "modules/setup/workspace.js" },
+      "T074_setup_wizard_client": { "status": "implemented", "file": "public/js/setup-wizard.js", "exports": ["createSetupWizardClient"] },
+      "T075_provider_settings_client": { "status": "implemented", "file": "public/js/provider-settings.js", "exports": ["createProviderSettingsClient"] },
+      "T076_route_capabilities": { "status": "implemented", "file": "route-capabilities.js", "new_capabilities": ["setup:activate", "setup:write", "setup:manage", "setup:read", "provider:manage", "provider:read"] }
+    }
+  },
+  "summary": {
+    "totalTasks": 28,
+    "completed": 20,
+    "skipped": 5,
+    "blocked": 1,
+    "pending": 2,
+    "testPassRate": "100%"
+  }
+}

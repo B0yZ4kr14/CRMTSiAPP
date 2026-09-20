@@ -9,11 +9,16 @@ test('RBAC grants agents only conversation operations', () => {
   assert.equal(can('agent', 'users:manage'), false);
 });
 
-test('RBAC makes viewers read-only and managers unable to rotate secrets', () => {
+test('RBAC makes viewers read-only and keeps privacy identifiers admin-only', () => {
   assert.equal(can('viewer', 'conversation:read'), true);
   assert.equal(can('viewer', 'conversation:write'), false);
+  assert.equal(can('viewer', 'privacy:read'), false);
   assert.equal(can('manager', 'queue:manage'), true);
   assert.equal(can('manager', 'secret:rotate'), false);
+  assert.equal(can('manager', 'privacy:read'), false);
+  assert.equal(can('manager', 'audit:read'), false);
+  assert.equal(can('admin', 'privacy:read'), true);
+  assert.equal(can('admin', 'audit:read'), true);
 });
 
 test('RBAC gives administrators all declared capabilities and denies unknown roles/actions', () => {

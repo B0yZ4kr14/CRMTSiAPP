@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "feature": "005-operational-experience",
+  "suiteId": "OE01-foundation",
+  "releaseHash": "working-tree",
+  "startedAt": "2026-09-20T15:38:40.200Z",
+  "completedAt": "2026-09-20T15:38:50.517Z",
+  "exitCode": 0,
+  "status": "passed",
+  "tests": {
+    "total": 29,
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "requirements": [
+    "FR-029",
+    "FR-030",
+    "FR-031",
+    "FR-032",
+    "SC-011",
+    "SC-012"
+  ],
+  "command": "node --test test/acceptance-gate.test.js test/acceptance-helpers.test.js test/operation-context-v2.test.js test/operational-error-contract.test.js test/postgres-operational-audit.test.js test/realtime-transactional-emission.test.js test/postgres-migration-governance.test.js",
+  "outputTail": "120941\n  type: 'test'\n  ...\n# Subtest: secret leak helper finds canaries without echoing their values\nok 13 - secret leak helper finds canaries without echoing their values\n  ---\n  duration_ms: 0.853396\n  type: 'test'\n  ...\n# Subtest: PostgreSQL helper fails closed when no real database connection is configured\nok 14 - PostgreSQL helper fails closed when no real database connection is configured\n  ---\n  duration_ms: 64.250714\n  type: 'test'\n  ...\n# Subtest: authenticated app helper serves an authenticated tenant-scoped route\nok 15 - authenticated app helper serves an authenticated tenant-scoped route\n  ---\n  duration_ms: 139.375339\n  type: 'test'\n  ...\n# Subtest: browser fixture loads Playwright and the system Chromium when the mandatory browser gate is installed\nok 16 - browser fixture loads Playwright and the system Chromium when the mandatory browser gate is installed\n  ---\n  duration_ms: 285.354213\n  type: 'test'\n  ...\n# Subtest: tenant matrix deliberately collides natural identifiers across tenants\nok 17 - tenant matrix deliberately collides natural identifiers across tenants\n  ---\n  duration_ms: 0.839422\n  type: 'test'\n  ...\n# Subtest: operation context is immutable and contains only trusted identity fields\nok 18 - operation context is immutable and contains only trusted identity fields\n  ---\n  duration_ms: 2.322331\n  type: 'test'\n  ...\n# Subtest: legacy actor input is accepted only with explicit request identity and admin capability\nok 19 - legacy actor input is accepted only with explicit request identity and admin capability\n  ---\n  duration_ms: 0.338248\n  type: 'test'\n  ...\n# Subtest: operation context denies missing tenant, actor, request, or capabilities by default\nok 20 - operation context denies missing tenant, actor, request, or capabilities by default\n  ---\n  duration_ms: 0.745609\n  type: 'test'\n  ...\n# Subtest: operational errors provide stable HTTP and CLI mappings without exposing causes\nok 21 - operational errors provide stable HTTP and CLI mappings without exposing causes\n  ---\n  duration_ms: 2.843718\n  type: 'test'\n  ...\n# Subtest: unknown errors serialize as stable internal failures\nok 22 - unknown errors serialize as stable internal failures\n  ---\n  duration_ms: 0.281862\n  type: 'test'\n  ...\n# Subtest: migration governance tracks advisory locking or migration locks to prevent concurrency race conditions\nok 23 - migration governance tracks advisory locking or migration locks to prevent concurrency race conditions\n  ---\n  duration_ms: 2.138547\n  type: 'test'\n  ...\n# Subtest: migration governance stores migration version, applied timestamp, and checksum/hash for integrity verification\nok 24 - migration governance stores migration version, applied timestamp, and checksum/hash for integrity verification\n  ---\n  duration_ms: 0.515394\n  type: 'test'\n  ...\n# Subtest: domain schema declares idempotent foundation and tenant migrations with version tracking\nok 25 - domain schema declares idempotent foundation and tenant migrations with version tracking\n  ---\n  duration_ms: 0.355648\n  type: 'test'\n  ...\n# Subtest: operational audit is append-only, tenant-scoped and redacts secret metadata\nok 26 - operational audit is append-only, tenant-scoped and redacts secret metadata\n  ---\n  duration_ms: 357.991704\n  type: 'test'\n  ...\n# Subtest: inbound message and realtime event are committed in the same transaction\nok 27 - inbound message and realtime event are committed in the same transaction\n  ---\n  duration_ms: 3.206375\n  type: 'test'\n  ...\n# Subtest: status update and realtime event are committed atomically\nok 28 - status update and realtime event are committed atomically\n  ---\n  duration_ms: 0.975068\n  type: 'test'\n  ...\n# Subtest: assignment update and realtime event are committed atomically\nok 29 - assignment update and realtime event are committed atomically\n  ---\n  duration_ms: 0.811174\n  type: 'test'\n  ...\n1..29\n# tests 29\n# suites 0\n# pass 29\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 10249.451929\n"
+}

@@ -1,0 +1,37 @@
+{
+  "feature": "005-operational-experience",
+  "target": "vpstsiapp:/opt/tsi-stack/apps/crm/crmtsiapp",
+  "timestamp": "2026-09-20T05:21:28Z",
+  "deployment": {
+    "tmuxSession": "tsi-crmtsiapp-operational-deploy",
+    "exitCode": 7,
+    "migration": "MIGRATION_OK",
+    "backup": "/opt/tsi-stack/backups/crmtsiapp-before-operational-experience-20260920T052038Z",
+    "note": "The deploy health probe raced the systemd restart and returned connection-refused; the independently validated runtime is healthy."
+  },
+  "runtime": {
+    "services": {
+      "crmtsiapp.service": "active",
+      "crmtsiapp-outbox-worker.service": "active",
+      "crmtsiapp-webhook-worker.service": "active"
+    },
+    "listener": "172.20.0.1:3101",
+    "hashes": {
+      "packageJson": "9782c556ebb81eab092796fac37b95a1d5ee5d9cbb0da0c12b57580451f204cd",
+      "serverJs": "0480d2b25ac2357dfe950975cbeafb521aa0def891ec71a5a16161ca9b5e790f",
+      "migrateJs": "b2e9e045a63467bb947bee2c81094bc8b56faa7f05d52bba93dad7e310794440"
+    }
+  },
+  "validation": {
+    "tmuxSession": "tsi-crmtsiapp-operational-validate",
+    "exitCode": 0,
+    "configuredHealth": "ok/db=1",
+    "httpsHealth": "ok/db=1",
+    "loopbackHealth": "not applicable: service is intentionally bound to 172.20.0.1",
+    "restarts": {
+      "crmtsiapp.service": 0,
+      "crmtsiapp-outbox-worker.service": 0,
+      "crmtsiapp-webhook-worker.service": 0
+    }
+  }
+}

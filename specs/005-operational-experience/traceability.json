@@ -1,0 +1,368 @@
+{
+  "feature": "005-operational-experience",
+  "requirements": {
+    "FR-001": {
+      "evidence": [
+        "OE02-realtime",
+        "test/browser-realtime-inbox.test.js",
+        "test/realtime-inbox-client.test.js"
+      ]
+    },
+    "FR-002": {
+      "evidence": [
+        "OE02-realtime",
+        "test/realtime-inbox-client.test.js",
+        "test/postgres-realtime-event-store.test.js"
+      ]
+    },
+    "FR-003": {
+      "evidence": [
+        "OE02-realtime",
+        "test/browser-realtime-inbox.test.js",
+        "test/realtime-inbox-client.test.js",
+        "test/postgres-realtime-event-store.test.js"
+      ]
+    },
+    "FR-004": {
+      "evidence": [
+        "OE02-realtime",
+        "test/realtime-sse-contract.test.js",
+        "test/postgres-realtime-tenant-isolation.test.js"
+      ]
+    },
+    "FR-005": {
+      "evidence": [
+        "OE02-realtime",
+        "test/browser-realtime-inbox.test.js",
+        "test/realtime-inbox-client.test.js"
+      ]
+    },
+    "FR-006": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/setup-state-machine.test.js"
+      ]
+    },
+    "FR-007": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/setup-http-contract.test.js"
+      ]
+    },
+    "FR-008": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/setup-state-machine.test.js"
+      ]
+    },
+    "FR-009": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/provider-config-schema.test.js"
+      ]
+    },
+    "FR-010": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/provider-secret-envelope.test.js"
+      ]
+    },
+    "FR-011": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/postgres-provider-credentials.test.js"
+      ]
+    },
+    "FR-012": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/provider-validation-safety.test.js"
+      ]
+    },
+    "FR-013": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/browser-setup-providers.test.js"
+      ]
+    },
+    "FR-014": {
+      "evidence": [
+        "OE03-setup-providers",
+        "test/provider-secret-envelope.test.js"
+      ]
+    },
+    "FR-015": {
+      "evidence": [
+        "OE04-cli",
+        "test/crm-cli-parser.test.js",
+        "test/crm-cli-output-contract.test.js"
+      ]
+    },
+    "FR-016": {
+      "evidence": [
+        "OE04-cli",
+        "test/crm-cli-executable.test.js",
+        "test/postgres-crm-cli-admin.test.js",
+        "test/postgres-crm-cli-privacy.test.js"
+      ]
+    },
+    "FR-017": {
+      "evidence": [
+        "OE04-cli",
+        "test/postgres-crm-cli-health-workers.test.js",
+        "test/postgres-admin-operations.test.js"
+      ]
+    },
+    "FR-018": {
+      "evidence": [
+        "OE04-cli",
+        "test/crm-cli-destructive-guard.test.js"
+      ]
+    },
+    "FR-019": {
+      "evidence": [
+        "OE04-cli",
+        "test/crm-cli-output-contract.test.js",
+        "test/crm-cli-executable.test.js"
+      ]
+    },
+    "FR-020": {
+      "evidence": [
+        "OE04-cli",
+        "test/postgres-admin-operations.test.js",
+        "test/cli-operation-runner.test.js"
+      ]
+    },
+    "FR-021": {
+      "evidence": [
+        "OE04-cli",
+        "test/crm-cli-output-contract.test.js",
+        "test/crm-cli-process-safety.test.js"
+      ]
+    },
+    "FR-022": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/automation-graph-schema.test.js",
+        "test/browser-visual-editors.test.js"
+      ]
+    },
+    "FR-023": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/automation-graph-validation.test.js"
+      ]
+    },
+    "FR-024": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/automation-simulation-v2.test.js"
+      ]
+    },
+    "FR-025": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/automation-editor-service.test.js",
+        "test/campaign-editor-service.test.js",
+        "test/postgres-automation-versions.test.js",
+        "test/postgres-campaign-versions.test.js"
+      ]
+    },
+    "FR-026": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/campaign-content-schema.test.js",
+        "test/browser-campaign-preview-sandbox.test.js"
+      ]
+    },
+    "FR-027": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/campaign-editor-service.test.js",
+        "test/campaign-preview-parity.test.js",
+        "test/postgres-campaign-versions.test.js"
+      ]
+    },
+    "FR-028": {
+      "evidence": [
+        "OE05-visual-editors",
+        "test/automation-editor-http-contract.test.js",
+        "test/campaign-editor-http-contract.test.js",
+        "test/postgres-automation-versions.test.js",
+        "test/postgres-campaign-versions.test.js"
+      ]
+    },
+    "FR-029": {
+      "evidence": [
+        "OE01-foundation",
+        "test/operational-experience-authorization-matrix.test.js"
+      ]
+    },
+    "FR-030": {
+      "evidence": [
+        "OE01-foundation",
+        "test/operational-experience-fail-closed.test.js"
+      ]
+    },
+    "FR-031": {
+      "evidence": [
+        "OE01-foundation",
+        "test/browser-operational-experience.test.js"
+      ]
+    },
+    "FR-032": {
+      "evidence": [
+        "OE01-foundation",
+        "evidence/005-operational-experience/final-validation.json"
+      ]
+    },
+    "SC-001": {
+      "status": "verified",
+      "evidence": [
+        "OE02-realtime"
+      ]
+    },
+    "SC-002": {
+      "status": "verified",
+      "evidence": [
+        "OE02-realtime"
+      ]
+    },
+    "SC-003": {
+      "status": "verified",
+      "evidence": [
+        "OE02-realtime"
+      ]
+    },
+    "SC-004": {
+      "status": "verified-by-automated-secret-redaction",
+      "evidence": [
+        "OE03-setup-providers",
+        "test/operational-experience-secret-regression.test.js"
+      ]
+    },
+    "SC-005": {
+      "status": "verified",
+      "evidence": [
+        "OE03-setup-providers"
+      ]
+    },
+    "SC-006": {
+      "status": "verified",
+      "evidence": [
+        "OE04-cli"
+      ]
+    },
+    "SC-007": {
+      "status": "verified",
+      "evidence": [
+        "OE04-cli"
+      ]
+    },
+    "SC-008": {
+      "status": "verified",
+      "evidence": [
+        "OE04-cli"
+      ]
+    },
+    "SC-009": {
+      "status": "verified",
+      "evidence": [
+        "OE05-visual-editors"
+      ]
+    },
+    "SC-010": {
+      "status": "verified",
+      "evidence": [
+        "OE05-visual-editors"
+      ]
+    },
+    "SC-011": {
+      "status": "verified",
+      "evidence": [
+        "OE01-foundation"
+      ]
+    },
+    "SC-012": {
+      "status": "verified",
+      "evidence": [
+        "OE01-foundation"
+      ]
+    }
+  },
+  "successCriteria": {
+    "SC-001": {
+      "status": "verified",
+      "evidence": [
+        "OE02-realtime"
+      ]
+    },
+    "SC-002": {
+      "status": "verified",
+      "evidence": [
+        "OE02-realtime"
+      ]
+    },
+    "SC-003": {
+      "status": "verified",
+      "evidence": [
+        "OE02-realtime"
+      ]
+    },
+    "SC-004": {
+      "status": "verified-by-automated-secret-redaction",
+      "evidence": [
+        "OE03-setup-providers",
+        "test/operational-experience-secret-regression.test.js"
+      ]
+    },
+    "SC-005": {
+      "status": "verified",
+      "evidence": [
+        "OE03-setup-providers"
+      ]
+    },
+    "SC-006": {
+      "status": "verified",
+      "evidence": [
+        "OE04-cli"
+      ]
+    },
+    "SC-007": {
+      "status": "verified",
+      "evidence": [
+        "OE04-cli"
+      ]
+    },
+    "SC-008": {
+      "status": "verified",
+      "evidence": [
+        "OE04-cli"
+      ]
+    },
+    "SC-009": {
+      "status": "verified",
+      "evidence": [
+        "OE05-visual-editors"
+      ]
+    },
+    "SC-010": {
+      "status": "verified",
+      "evidence": [
+        "OE05-visual-editors"
+      ]
+    },
+    "SC-011": {
+      "status": "verified",
+      "evidence": [
+        "OE01-foundation"
+      ]
+    },
+    "SC-012": {
+      "status": "verified",
+      "evidence": [
+        "OE01-foundation"
+      ]
+    }
+  }
+}

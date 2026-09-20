@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "feature": "005-operational-experience",
+  "suiteId": "OE03-setup-providers",
+  "releaseHash": "working-tree",
+  "startedAt": "2026-09-20T15:39:23.836Z",
+  "completedAt": "2026-09-20T15:39:28.874Z",
+  "exitCode": 0,
+  "status": "passed",
+  "tests": {
+    "total": 70,
+    "passed": 70,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "requirements": [
+    "FR-006",
+    "FR-007",
+    "FR-008",
+    "FR-009",
+    "FR-010",
+    "FR-011",
+    "FR-012",
+    "FR-013",
+    "FR-014",
+    "FR-015",
+    "SC-004",
+    "SC-005"
+  ],
+  "command": "node --test test/setup-state-machine.test.js test/postgres-setup-activation.test.js test/setup-http-contract.test.js test/provider-config-schema.test.js test/provider-secret-envelope.test.js test/postgres-provider-credentials.test.js test/provider-validation-safety.test.js test/browser-setup-providers.test.js",
+  "outputTail": "in URL\n  ---\n  duration_ms: 0.136942\n  type: 'test'\n  ...\n# Subtest: redaction does not mutate original config\nok 50 - redaction does not mutate original config\n  ---\n  duration_ms: 0.122526\n  type: 'test'\n  ...\n# Subtest: GET /setup/status returns uninitialized for fresh tenant\nok 51 - GET /setup/status returns uninitialized for fresh tenant\n  ---\n  duration_ms: 58.162606\n  type: 'test'\n  ...\n# Subtest: POST /setup/bootstrap rejects missing secret\nok 52 - POST /setup/bootstrap rejects missing secret\n  ---\n  duration_ms: 14.394208\n  type: 'test'\n  ...\n# Subtest: POST /setup/bootstrap rejects invalid secret\nok 53 - POST /setup/bootstrap rejects invalid secret\n  ---\n  duration_ms: 5.897633\n  type: 'test'\n  ...\n# Subtest: POST /setup/bootstrap rejects second bootstrap attempt\nok 54 - POST /setup/bootstrap rejects second bootstrap attempt\n  ---\n  duration_ms: 10.408796\n  type: 'test'\n  ...\n# Subtest: PUT /setup/draft rejects unbootstrapped tenant\nok 55 - PUT /setup/draft rejects unbootstrapped tenant\n  ---\n  duration_ms: 5.586947\n  type: 'test'\n  ...\n# Subtest: PUT /setup/draft rejects unknown provider\nok 56 - PUT /setup/draft rejects unknown provider\n  ---\n  duration_ms: 8.228011\n  type: 'test'\n  ...\n# Subtest: PUT /setup/draft rejects missing required fields\nok 57 - PUT /setup/draft rejects missing required fields\n  ---\n  duration_ms: 15.363575\n  type: 'test'\n  ...\n# Subtest: POST /setup/validate rejects without draft\nok 58 - POST /setup/validate rejects without draft\n  ---\n  duration_ms: 8.632033\n  type: 'test'\n  ...\n# Subtest: POST /setup/validate enforces rate limit\nok 59 - POST /setup/validate enforces rate limit\n  ---\n  duration_ms: 37.47778\n  type: 'test'\n  ...\n# Subtest: POST /setup/activate rejects invalid state\nok 60 - POST /setup/activate rejects invalid state\n  ---\n  duration_ms: 3.995515\n  type: 'test'\n  ...\n# Subtest: POST /setup/activate closes further mutations\nok 61 - POST /setup/activate closes further mutations\n  ---\n  duration_ms: 11.35293\n  type: 'test'\n  ...\n# Subtest: bootstrap credential linked to another tenant is rejected\nok 62 - bootstrap credential linked to another tenant is rejected\n  ---\n  duration_ms: 7.844386\n  type: 'test'\n  ...\n# Subtest: setup state machine rejects direct tenant injection from payload\nok 63 - setup state machine rejects direct tenant injection from payload\n  ---\n  duration_ms: 5.136668\n  type: 'test'\n  ...\n# Subtest: setup state machine requires valid bootstrap secret for initial transition\nok 64 - setup state machine requires valid bootstrap secret for initial transition\n  ---\n  duration_ms: 1.425986\n  type: 'test'\n  ...\n# Subtest: setup state machine only allows bootstrap once and seals the version\nok 65 - setup state machine only allows bootstrap once and seals the version\n  ---\n  duration_ms: 0.507379\n  type: 'test'\n  ...\n# Subtest: setup state machine tracks draft config without persisting secrets\nok 66 - setup state machine tracks draft config without persisting secrets\n  ---\n  duration_ms: 0.571186\n  type: 'test'\n  ...\n# Subtest: setup state machine validates provider config against allowlisted schema\nok 67 - setup state machine validates provider config against allowlisted schema\n  ---\n  duration_ms: 0.683433\n  type: 'test'\n  ...\n# Subtest: setup state machine enforces rate limit on validation attempts\nok 68 - setup state machine enforces rate limit on validation attempts\n  ---\n  duration_ms: 1.702219\n  type: 'test'\n  ...\n# Subtest: setup state machine atomically activates validated draft and closes further mutations\nok 69 - setup state machine atomically activates validated draft and closes further mutations\n  ---\n  duration_ms: 0.941418\n  type: 'test'\n  ...\n# Subtest: setup state machine rolls back on injected failure during activation\nok 70 - setup state machine rolls back on injected failure during activation\n  ---\n  duration_ms: 0.973086\n  type: 'test'\n  ...\n1..70\n# tests 70\n# suites 0\n# pass 70\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 4957.062915\n"
+}

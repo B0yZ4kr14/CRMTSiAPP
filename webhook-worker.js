@@ -49,11 +49,11 @@ async function markWebhookFailed(pool, event, error) {
   return { accepted: result.rowCount === 1, dead };
 }
 
-async function processOneWebhook({ pool, workerId }) {
+async function processOneWebhook({ pool, workerId, processEvent = processWebhookEvent }) {
   const event = await claimNextWebhook(pool, workerId);
   if (!event) return null;
   try {
-    await processWebhookEvent(pool, event.payload, { channelId: event.channel_id });
+    await processEvent(pool, event.payload, { channelId: event.channel_id, tenantId: event.tenant_id });
     const accepted = await markWebhookProcessed(pool, event);
     return { id: event.id, status: accepted ? 'processed' : 'lease_lost' };
   } catch (error) {

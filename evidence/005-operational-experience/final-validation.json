@@ -1,0 +1,28 @@
+{
+  "feature": "005-operational-experience",
+  "timestamp": "2026-09-20T06:57:35Z",
+  "result": "validated-production-runtime",
+  "validationSession": "tsi-crmtsiapp-operational-final",
+  "exitCode": 0,
+  "checks": {
+    "crmtsiappService": "active",
+    "outboxWorker": "active",
+    "webhookWorker": "active",
+    "postgresql": "connected (health db=1)",
+    "privateHealth": "http://172.20.0.1:3101/health => ok",
+    "httpsHealth": "https://crm.tsiapp.io/health => ok",
+    "loopback": "127.0.0.1 is intentionally not bound; this is expected"
+  },
+  "rollback": {
+    "validationSession": "tsi-crmtsiapp-operational-rollback-validate",
+    "exitCode": 0,
+    "artifact": "/opt/tsi-stack/backups/crmtsiapp-before-operational-experience-20260920T052038Z",
+    "proof": "App directory was switched to the selected backup, all three services restarted, configured private health passed; current release was restored, all services restarted, configured private health passed.",
+    "restoredProduction": true
+  },
+  "stability": {
+    "crmtsiapp.service": { "NRestarts": 0 },
+    "crmtsiapp-outbox-worker.service": { "NRestarts": 0 },
+    "crmtsiapp-webhook-worker.service": { "NRestarts": 0 }
+  }
+}

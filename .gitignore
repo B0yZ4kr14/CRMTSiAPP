@@ -5,6 +5,7 @@ node_modules/
 
 # Environment files
 .env
+.env*
 .env.local
 .env.production
 
@@ -33,6 +34,11 @@ db/*.backup
 # Temporary files
 *.tmp
 *.temp
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
 
 # OS cache
 .DS_Store
@@ -44,4 +50,10 @@ logs/
 
 # Test results
 junit.xml
-```
+coverage/
+# Generated/local artifacts
+/graphify-out/
+evidence_temp.json
+findings.md
+ORCHESTRATION_PLAN.md
+REMediation-STATUS-*.md

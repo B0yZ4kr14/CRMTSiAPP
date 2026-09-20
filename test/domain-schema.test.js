@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { FOUNDATION_TABLES, foundationMigration } = require('../domain-schema');
+const { FOUNDATION_TABLES, foundationMigration, operationalExperienceMigration } = require('../domain-schema');
 
 test('the foundation migration declares every security and operational domain table', () => {
   assert.deepEqual(FOUNDATION_TABLES, [
@@ -10,9 +10,14 @@ test('the foundation migration declares every security and operational domain ta
     'sla_policies', 'conversation_sla', 'routing_rules', 'templates', 'template_versions',
     'outbox_jobs', 'delivery_events', 'failed_jobs', 'conversation_assignments', 'internal_notes',
     'automation_rules', 'automation_runs', 'privacy_requests', 'retention_runs', 'metrics_rollups',
+    'installation_setup', 'provider_configs', 'admin_operations', 'queue_controls',
   ]);
-  const sql = foundationMigration();
-  for (const table of FOUNDATION_TABLES) assert.match(sql, new RegExp(`create table if not exists ${table}`));
+  const foundationSql = foundationMigration();
+  const operationalSql = operationalExperienceMigration();
+  for (const table of FOUNDATION_TABLES) {
+    const sql = ['installation_setup', 'provider_configs', 'admin_operations', 'queue_controls'].includes(table) ? operationalSql : foundationSql;
+    assert.match(sql, new RegExp(`create table if not exists ${table}`));
+  }
 });
 
 test('the foundation migration protects outbox idempotency and webhook deduplication in PostgreSQL', () => {

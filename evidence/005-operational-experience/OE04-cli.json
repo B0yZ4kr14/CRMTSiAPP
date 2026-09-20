@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "feature": "005-operational-experience",
+  "suiteId": "OE04-cli",
+  "releaseHash": "working-tree",
+  "startedAt": "2026-09-20T15:39:28.874Z",
+  "completedAt": "2026-09-20T15:39:29.424Z",
+  "exitCode": 0,
+  "status": "passed",
+  "tests": {
+    "total": 40,
+    "passed": 40,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "requirements": [
+    "FR-016",
+    "FR-017",
+    "FR-018",
+    "FR-019",
+    "FR-020",
+    "FR-021",
+    "SC-006",
+    "SC-007",
+    "SC-008"
+  ],
+  "command": "node --test test/crm-cli-parser.test.js test/crm-cli-output-contract.test.js test/crm-cli-executable.test.js test/crm-cli-process-safety.test.js test/cli-operation-runner.test.js test/postgres-admin-operations.test.js test/crm-cli-destructive-guard.test.js test/postgres-crm-cli-admin.test.js test/postgres-crm-cli-health-workers.test.js test/postgres-crm-cli-queue-drain.test.js test/postgres-crm-cli-privacy.test.js test/privacy-service.test.js",
+  "outputTail": "uration_ms: 0.680332\n  type: 'test'\n  ...\n# Subtest: CLI parser requires idempotency key for destructive commands\nok 22 - CLI parser requires idempotency key for destructive commands\n  ---\n  duration_ms: 0.977129\n  type: 'test'\n  ...\n# Subtest: CLI parser supports --yes for destructive confirmation\nok 23 - CLI parser supports --yes for destructive confirmation\n  ---\n  duration_ms: 1.845146\n  type: 'test'\n  ...\n# Subtest: CLI parser rejects incomplete command grammar\nok 24 - CLI parser rejects incomplete command grammar\n  ---\n  duration_ms: 0.53718\n  type: 'test'\n  ...\n# Subtest: CLI secret input rejects secrets placed in argv\nok 25 - CLI secret input rejects secrets placed in argv\n  ---\n  duration_ms: 3.453227\n  type: 'test'\n  ...\n# Subtest: CLI secret input accepts restricted stdin/fd sources only\nok 26 - CLI secret input accepts restricted stdin/fd sources only\n  ---\n  duration_ms: 0.598071\n  type: 'test'\n  ...\n# Subtest: CLI secret input reads bounded secret from stdin and trims terminal newline\nok 27 - CLI secret input reads bounded secret from stdin and trims terminal newline\n  ---\n  duration_ms: 0.736459\n  type: 'test'\n  ...\n# Subtest: CLI secret input rejects oversized or empty stdin secrets\nok 28 - CLI secret input rejects oversized or empty stdin secrets\n  ---\n  duration_ms: 0.876922\n  type: 'test'\n  ...\n# Subtest: admin operation runner is idempotent and replays the same request\nok 29 - admin operation runner is idempotent and replays the same request\n  ---\n  duration_ms: 4.219749\n  type: 'test'\n  ...\n# Subtest: admin operation runner rejects idempotency key collision with divergent input\nok 30 - admin operation runner rejects idempotency key collision with divergent input\n  ---\n  duration_ms: 1.470042\n  type: 'test'\n  ...\n# Subtest: admin command requires identity and never receives password through argv\nok 31 - admin command requires identity and never receives password through argv\n  ---\n  duration_ms: 8.243819\n  type: 'test'\n  ...\n# Subtest: workers list is tenant-scoped and reports stale heartbeats\nok 32 - workers list is tenant-scoped and reports stale heartbeats\n  ---\n  duration_ms: 4.212252\n  type: 'test'\n  ...\n# Subtest: privacy request rejects missing target or unsupported operation\nok 33 - privacy request rejects missing target or unsupported operation\n  ---\n  duration_ms: 1.113418\n  type: 'test'\n  ...\n# Subtest: queue drain rejects invalid timeout before touching the database\nok 34 - queue drain rejects invalid timeout before touching the database\n  ---\n  duration_ms: 2.719703\n  type: 'test'\n  ...\n# Subtest: queue drain pauses claims, waits for leases and resumes without deleting jobs\nok 35 - queue drain pauses claims, waits for leases and resumes without deleting jobs\n  ---\n  duration_ms: 3.106132\n  type: 'test'\n  ...\n# Subtest: privacy service creates tenant-scoped requests and processes anonymization transactionally\nok 36 - privacy service creates tenant-scoped requests and processes anonymization transactionally\n  ---\n  duration_ms: 7.526682\n  type: 'test'\n  ...\n# Subtest: privacy export returns restricted tenant-scoped records\nok 37 - privacy export returns restricted tenant-scoped records\n  ---\n  duration_ms: 2.559725\n  type: 'test'\n  ...\n# Subtest: privacy delete removes only matching tenant-scoped conversations\nok 38 - privacy delete removes only matching tenant-scoped conversations\n  ---\n  duration_ms: 0.923318\n  type: 'test'\n  ...\n# Subtest: privacy request under legal hold is retained and rejected without destructive change\nok 39 - privacy request under legal hold is retained and rejected without destructive change\n  ---\n  duration_ms: 0.869436\n  type: 'test'\n  ...\n# Subtest: privacy retention requires tenant and actor context and returns deletion count\nok 40 - privacy retention requires tenant and actor context and returns deletion count\n  ---\n  duration_ms: 2.711103\n  type: 'test'\n  ...\n1..40\n# tests 40\n# suites 0\n# pass 40\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 476.394609\n"
+}

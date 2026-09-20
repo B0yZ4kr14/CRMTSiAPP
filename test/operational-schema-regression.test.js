@@ -16,4 +16,6 @@ test('operational schema has durable privacy, automation and metric work records
   for (const table of ['automation_rules', 'automation_runs', 'privacy_requests', 'retention_runs', 'metrics_rollups']) {
     assert.match(sql, new RegExp(`create table if not exists ${table}`));
   }
+  assert.match(sql, /create table if not exists automation_rules \(id uuid primary key, tenant_id uuid references tenants\(id\) on delete restrict, name text not null, trigger_type text not null, conditions jsonb/);
+  assert.match(sql, /create table if not exists privacy_requests \(id uuid primary key, tenant_id uuid references tenants\(id\) on delete restrict, contact_phone text not null, kind text not null/);
 });

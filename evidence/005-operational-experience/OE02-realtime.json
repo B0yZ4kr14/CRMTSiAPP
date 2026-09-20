@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "feature": "005-operational-experience",
+  "suiteId": "OE02-realtime",
+  "releaseHash": "working-tree",
+  "startedAt": "2026-09-20T15:38:50.519Z",
+  "completedAt": "2026-09-20T15:39:23.836Z",
+  "exitCode": 0,
+  "status": "passed",
+  "tests": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "requirements": [
+    "FR-001",
+    "FR-002",
+    "FR-003",
+    "FR-004",
+    "FR-005",
+    "SC-001",
+    "SC-002",
+    "SC-003"
+  ],
+  "command": "node --test test/realtime-sse-contract.test.js test/realtime-inbox-client.test.js test/postgres-realtime-event-store.test.js test/postgres-realtime-tenant-isolation.test.js test/realtime-sse-backpressure.test.js test/postgres-realtime-multiprocess.test.js test/browser-realtime-inbox.test.js",
+  "outputTail": "ation and retention can prune it\nok 5 - expired realtime history forces reconciliation and retention can prune it\n  ---\n  duration_ms: 324.13164\n  type: 'test'\n  ...\n# Subtest: multiple instances use NOTIFY only as wake-up and re-read the durable tenant stream\nok 6 - multiple instances use NOTIFY only as wake-up and re-read the durable tenant stream\n  ---\n  duration_ms: 2264.316718\n  type: 'test'\n  ...\n# Subtest: listener ignores malformed wake-ups and keeps tenant streams isolated\nok 7 - listener ignores malformed wake-ups and keeps tenant streams isolated\n  ---\n  duration_ms: 609.974772\n  type: 'test'\n  ...\n# Subtest: replay never exposes another tenant or unauthorized team audience\nok 8 - replay never exposes another tenant or unauthorized team audience\n  ---\n  duration_ms: 2238.940664\n  type: 'test'\n  ...\n# Subtest: presence heartbeat is tenant/team scoped and expiration emits bounded events\nok 9 - presence heartbeat is tenant/team scoped and expiration emits bounded events\n  ---\n  duration_ms: 604.996317\n  type: 'test'\n  ...\n# Subtest: realtime client expands paginated replay beyond 6,000 events\nok 10 - realtime client expands paginated replay beyond 6,000 events\n  ---\n  duration_ms: 2.637825\n  type: 'test'\n  ...\n# Subtest: realtime client deduplicates event IDs and ignores stale aggregate versions\nok 11 - realtime client deduplicates event IDs and ignores stale aggregate versions\n  ---\n  duration_ms: 0.747118\n  type: 'test'\n  ...\n# Subtest: realtime client applies a newer aggregate version and tracks the fully applied cursor\nok 12 - realtime client applies a newer aggregate version and tracks the fully applied cursor\n  ---\n  duration_ms: 0.511547\n  type: 'test'\n  ...\n# Subtest: realtime client reconciles on instruction and marks stale/error states\nok 13 - realtime client reconciles on instruction and marks stale/error states\n  ---\n  duration_ms: 0.738917\n  type: 'test'\n  ...\n# Subtest: connection registry enforces per-user and per-tenant quotas\nok 14 - connection registry enforces per-user and per-tenant quotas\n  ---\n  duration_ms: 2.846861\n  type: 'test'\n  ...\n# Subtest: bounded queues close a slow client rather than growing without limit\nok 15 - bounded queues close a slow client rather than growing without limit\n  ---\n  duration_ms: 0.800697\n  type: 'test'\n  ...\n# Subtest: drain flushes queued frames in order and heartbeats contain no data\nok 16 - drain flushes queued frames in order and heartbeats contain no data\n  ---\n  duration_ms: 1.785698\n  type: 'test'\n  ...\n# (node:2449409) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time\n# (Use `node --trace-warnings ...` to show where the warning was created)\n# Subtest: SSE contract returns 401 without a current secure session\nok 17 - SSE contract returns 401 without a current secure session\n  ---\n  duration_ms: 1.668491\n  type: 'test'\n  ...\n# Subtest: SSE contract returns 403 when realtime capability is denied\nok 18 - SSE contract returns 403 when realtime capability is denied\n  ---\n  duration_ms: 0.361033\n  type: 'test'\n  ...\n# Subtest: SSE contract returns 409 for a future cursor\nok 19 - SSE contract returns 409 for a future cursor\n  ---\n  duration_ms: 0.359014\n  type: 'test'\n  ...\n# Subtest: SSE contract returns 429 when the user connection quota is exhausted\nok 20 - SSE contract returns 429 when the user connection quota is exhausted\n  ---\n  duration_ms: 0.348427\n  type: 'test'\n  ...\n# Subtest: SSE contract returns 503 when durable replay is unavailable\nok 21 - SSE contract returns 503 when durable replay is unavailable\n  ---\n  duration_ms: 0.418855\n  type: 'test'\n  ...\n# Subtest: SSE contract opens a no-cache stream, replays ordered frames, and emits heartbeat comments\nok 22 - SSE contract opens a no-cache stream, replays ordered frames, and emits heartbeat comments\n  ---\n  duration_ms: 2.143379\n  type: 'test'\n  ...\n1..22\n# tests 22\n# suites 0\n# pass 22\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 33246.152581\n"
+}

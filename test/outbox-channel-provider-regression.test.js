@@ -13,8 +13,8 @@ test('worker chooses adapter from persisted channel rather than a nonexistent jo
     const ciphertext = encryptCredentials({}, key);
     const pool = { async query(sql, values) {
       calls.push({ sql, values });
-      if (sql.includes('from outbox_jobs')) return { rows: [{ id:'job-1', channel_id:'channel-1', kind:'text', payload:{ to:'5511999999999', body:'Olá' }, attempts:0, max_attempts:8 }] };
-      if (sql.includes('from channels c')) return { rows: [{ id:'channel-1', provider:'waha', config:{}, ciphertext }] };
+      if (sql.includes('from outbox_jobs')) return { rows: [{ id:'job-1', tenant_id:'00000000-0000-4000-8000-000000000001', channel_id:'channel-1', kind:'text', payload:{ to:'5511999999999', body:'Olá' }, attempts:0, max_attempts:8 }] };
+      if (sql.includes('from channels c')) return { rows: [{ id:'channel-1', tenant_id:'00000000-0000-4000-8000-000000000001', provider:'waha', config:{}, ciphertext }] };
       return { rows: [] };
     } };
     const result = await processOne({ pool, workerId:'test', adapters:{ waha:{ sendText: async () => ({ providerMessageId:'provider-1', status:'sent' }) } } });

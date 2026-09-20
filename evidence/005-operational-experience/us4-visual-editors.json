@@ -1,0 +1,28 @@
+{
+  "feature": "US4 - Editores visuais de automações e campanhas",
+  "generatedAt": "2026-09-19T20:30:00.000Z",
+  "validation": {
+    "command": "npm run test",
+    "tests": 442,
+    "passed": 397,
+    "skipped": 45,
+    "failed": 0,
+    "durationMs": 2134165
+  },
+  "requirements": {
+    "FR-022": { "description": "Automação visual com graph schema, normalização e hash canônico", "tests": ["automation-graph-schema.test.js", "automation-graph-validation.test.js"], "implementation": ["modules/automation/graph-schema.js", "modules/automation/graph-validator.js"] },
+    "FR-023": { "description": "Simulação determinística sem efeitos e trace por nó", "tests": ["automation-simulation-v2.test.js", "postgres-automation-engine.test.js"], "implementation": ["modules/automation/compiler.js", "modules/automation/engine.js"] },
+    "FR-024": { "description": "Drafts automation CAS, versões imutáveis, publish/restore, pinning", "tests": ["automation-editor-service.test.js", "automation-version-pinning.test.js", "automation-editor-http-contract.test.js"], "implementation": ["modules/automation/editor-service.js", "modules/automation/routes.js"] },
+    "FR-025": { "description": "Conteúdo campanha allowlisted, variables e capability profiles", "tests": ["campaign-content-schema.test.js"], "implementation": ["modules/marketing/content-schema.js", "modules/marketing/channel-capabilities.js"] },
+    "FR-026": { "description": "Conteúdo seguro XSS/URL e preview canônico", "tests": ["campaign-content-security.test.js", "campaign-preview-parity.test.js"], "implementation": ["modules/marketing/content-compiler.js", "modules/marketing/preview-service.js", "modules/marketing/preview-frame.js"] },
+    "FR-027": { "description": "Campaign CAS, fingerprint, versões e dispatch pinado", "tests": ["campaign-editor-service.test.js", "postgres-campaign-dispatch.test.js", "campaign-editor-http-contract.test.js"], "implementation": ["modules/marketing/campaign-service.js", "modules/marketing/campaign-dispatch.js", "modules/marketing/routes.js"] },
+    "FR-028": { "description": "UI acessível com canvas/lista, blocos, teclado, aria-live e CSP", "tests": ["rbac.test.js", "server-route-capabilities-regression.test.js"], "implementation": ["modules/automation/workspace.js", "modules/marketing/workspace.js", "public/js/automation-editor.js", "public/js/campaign-editor.js", "server.js", "route-capabilities.js"] }
+  },
+  "tasks": {
+    "T104": "passed", "T105": "passed", "T106": "passed", "T107": "skipped: PostgreSQL not configured", "T108": "passed", "T109": "passed", "T110": "passed", "T111": "passed", "T112": "skipped: PostgreSQL not configured", "T113": "passed", "T114": "blocked: Playwright not installed", "T115": "blocked: Playwright not installed", "T116": "passed", "T117": "passed", "T118": "passed", "T119": "passed", "T120": "passed", "T121": "passed", "T122": "passed", "T123": "passed", "T124": "passed", "T125": "passed", "T126": "passed", "T127": "passed", "T128": "passed", "T129": "passed", "T130": "passed", "T131": "passed", "T132": "passed", "T133": "passed", "T134": "passed", "T135": "passed", "T136": "passed", "T137": "passed"
+  },
+  "limitations": [
+    "Chromium E2E tasks T114/T115 require Playwright, which is not installed.",
+    "PostgreSQL-real tasks T107/T112 require TEST_DATABASE_URL or TEST_DATABASE_ADMIN_URL."
+  ]
+}

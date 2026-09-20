@@ -1,0 +1,26 @@
+{
+  "release": "2ba4c2e",
+  "branch": "feature/005-operational-experience-release",
+  "host": "vpstsiapp",
+  "path": "/opt/tsi-stack/apps/crm/crmtsiapp",
+  "validation": {
+    "primary_tmux_session": "tsi-crmtsiapp-release-validate",
+    "secondary_tmux_session": "tsi-crmtsiapp-release-validate-2",
+    "services": {
+      "crmtsiapp.service": "active",
+      "crmtsiapp-outbox-worker.service": "active",
+      "crmtsiapp-webhook-worker.service": "active"
+    },
+    "restarts": {
+      "crmtsiapp.service": 0,
+      "crmtsiapp-outbox-worker.service": 0,
+      "crmtsiapp-webhook-worker.service": 0
+    },
+    "private_live": {"ok": true, "status": "live"},
+    "private_ready": {"ok": true, "db": 1, "status": "ok"},
+    "public_live": {"ok": true, "status": "live"},
+    "public_ready": {"ok": true, "db": 1, "status": "ok"},
+    "secondary_validation_exit": 0
+  },
+  "credentials_or_logs_included": false
+}

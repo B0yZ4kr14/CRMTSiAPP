@@ -2,8 +2,9 @@ const { can, ROLE_CAPABILITIES } = require('./rbac');
 
 function effectiveRole({ legacyRole, assignedRoles = [] } = {}) {
   if (assignedRoles.length > 0) {
-    const assigned = assignedRoles.find(role => Object.hasOwn(ROLE_CAPABILITIES, role));
-    return assigned || null;
+    const normalized = [...new Set(assignedRoles)];
+    if (normalized.length !== 1 || !Object.hasOwn(ROLE_CAPABILITIES, normalized[0])) return null;
+    return normalized[0];
   }
   return Object.hasOwn(ROLE_CAPABILITIES, legacyRole) ? legacyRole : null;
 }
@@ -16,10 +17,11 @@ function ensureAuthorized(user, capability) {
   }
 }
 
-function auditInsert(pool, { actorUserId = null, action, resourceType, resourceId = null, metadata = {} }) {
+function auditInsert(pool, { tenantId, actorUserId = null, action, resourceType, resourceId = null, metadata = {} }) {
+  if (!tenantId) throw new TypeError('tenantId is required for audit');
   return pool.query(
-    'insert into audit_events(id,actor_user_id,action,resource_type,resource_id,metadata) values($1,$2,$3,$4,$5,$6)',
-    [require('crypto').randomUUID(), actorUserId, action, resourceType, resourceId, JSON.stringify(metadata)],
+    'insert into audit_events(id,tenant_id,actor_user_id,action,resource_type,resource_id,metadata) values($1,$2,$3,$4,$5,$6,$7)',
+    [require('crypto').randomUUID(), tenantId, actorUserId, action, resourceType, resourceId, JSON.stringify(metadata)],
   );
 }
 

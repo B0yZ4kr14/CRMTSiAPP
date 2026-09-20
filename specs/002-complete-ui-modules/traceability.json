@@ -1,0 +1,1272 @@
+{
+  "schemaVersion": 1,
+  "feature": "002-complete-ui-modules",
+  "normativeSources": [
+    "specs/002-complete-ui-modules/spec.md",
+    "docs/CRMTSIAPP-SELF-HOSTED-PARITY-MATRIX.md"
+  ],
+  "counts": {
+    "functionalRequirements": 36,
+    "successCriteria": 12,
+    "parityRows": 109,
+    "total": 157
+  },
+  "requirements": [
+    {
+      "id": "FR-001",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-002",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-003",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-004",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-005",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-006",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-007",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-008",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-009",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-010",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-011",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-012",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-013",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-014",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-015",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-016",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-017",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-018",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-019",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-020",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-021",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-022",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-023",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-024",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-025",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-026",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-027",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-028",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-029",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-030",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-031",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-032",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-033",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-034",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-035",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "FR-036",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-001",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-002",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-003",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-004",
+      "gate": "G04-postgres-real",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-005",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-006",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-007",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-008",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-009",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-010",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-011",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SC-012",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-001",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-002",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-003",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-004",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-005",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-006",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-007",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-008",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "PLAT-009",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-001",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-002",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-003",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-004",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-005",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-006",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-007",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-008",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-009",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-010",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-011",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-012",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MSG-013",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-001",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-002",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-003",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-004",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-005",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-006",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-007",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-008",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-009",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INBOX-010",
+      "gate": "G05-browser-accessibility",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-001",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-002",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-003",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-004",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-005",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-006",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-007",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-008",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-009",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-010",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-011",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-012",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "CRM-013",
+      "gate": "G03-http-contracts",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MKT-001",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MKT-002",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MKT-003",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MKT-004",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MKT-005",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "MKT-006",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AUTO-001",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AUTO-002",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AUTO-003",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AUTO-004",
+      "gate": "G08-campaign-automation",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INT-001",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INT-002",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INT-003",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INT-004",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "INT-005",
+      "gate": "G06-messaging-providers",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-001",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-002",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-003",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-004",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-005",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-006",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-007",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-008",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-009",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-010",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-011",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "AI-012",
+      "gate": "G09-knowledge-ai",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-001",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-002",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-003",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-004",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-005",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-006",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "GOV-007",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SEC-001",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SEC-002",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SEC-003",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SEC-004",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SEC-005",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "SEC-006",
+      "gate": "G07-security-privacy",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-001",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-002",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-003",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-004",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-005",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-006",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-007",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "OBS-008",
+      "gate": "G10-reports-observability",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "NFR-001",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "NFR-002",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "NFR-003",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "NFR-004",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "NFR-005",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "NFR-006",
+      "gate": "G11-performance-resilience",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "TEST-001",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "TEST-002",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "TEST-003",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "TEST-004",
+      "gate": "G01-static-integrity",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "DEP-001",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "DEP-002",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "DEP-003",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "DEP-004",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "DEP-005",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    },
+    {
+      "id": "DEP-006",
+      "gate": "G12-release-recovery",
+      "status": "planned",
+      "implementation": [],
+      "tests": [],
+      "liveEvidence": []
+    }
+  ]
+}

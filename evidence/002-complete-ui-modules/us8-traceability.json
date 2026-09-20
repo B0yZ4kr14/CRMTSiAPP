@@ -1,0 +1,26 @@
+{
+  "feature": "002-complete-ui-modules",
+  "requirements": {
+    "FR-030": {
+      "status": "implemented",
+      "implementation": ["modules/reporting/metric-definitions.js", "modules/reporting/metric-service.js", "modules/reporting/workspace.js", "server.js"],
+      "tests": ["test/report-metrics.test.js", "test/report-workspace-export.test.js", "test/report-routes.test.js"],
+      "liveEvidence": ["evidence/002-complete-ui-modules/us8-reports-observability.json"]
+    },
+    "FR-031": {
+      "status": "implemented",
+      "implementation": ["server.js", "modules/operations/system-status.js", "modules/reporting/status-workspace.js"],
+      "tests": ["test/observability-complete.test.js", "test/observability-routes.test.js", "test/status-workspace.test.js"],
+      "liveEvidence": ["evidence/002-complete-ui-modules/us8-reports-observability.json"]
+    },
+    "FR-032": {
+      "status": "implemented",
+      "implementation": ["modules/reporting/alert-service.js", "workers/alert-worker.js", "domain-schema.js"],
+      "tests": ["test/alerting.test.js", "test/alert-persistence.test.js"],
+      "liveEvidence": ["evidence/002-complete-ui-modules/us8-reports-observability.json"]
+    },
+    "OBS-001": { "status": "implemented", "tests": ["test/observability-complete.test.js"], "liveEvidence": ["evidence/002-complete-ui-modules/us8-reports-observability.json"] },
+    "OBS-002": { "status": "implemented", "tests": ["test/observability-routes.test.js"], "liveEvidence": ["evidence/002-complete-ui-modules/us8-reports-observability.json"] },
+    "OBS-003": { "status": "implemented", "tests": ["test/alerting.test.js", "test/alert-persistence.test.js"], "liveEvidence": ["evidence/002-complete-ui-modules/us8-reports-observability.json"] }
+  }
+}

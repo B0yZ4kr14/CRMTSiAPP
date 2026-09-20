@@ -1,0 +1,52 @@
+{
+  "feature": "005-operational-experience",
+  "phase": "Phase 2 - Fundação compartilhada e bloqueante",
+  "tasks": ["T009", "T010", "T011", "T012", "T013", "T014", "T015", "T016", "T017", "T018", "T019", "T020", "T021", "T022", "T023", "T024", "T025"],
+  "observedAt": "2026-09-19",
+  "result": "pass",
+  "commands": [
+    {
+      "command": "node --test --test-reporter=tap test/operation-context-v2.test.js test/operational-error-contract.test.js test/secret-redaction-v2.test.js test/postgres-operational-audit.test.js test/postgres-operational-experience-upgrade.test.js",
+      "tests": 9,
+      "pass": 9,
+      "fail": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "command": "node --test --test-reporter=tap test/operational-primitives.test.js test/production-safety-regression.test.js test/route-registry-completeness.test.js test/server-route-capabilities-regression.test.js",
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    {
+      "command": "npm run test:postgres",
+      "tests": 33,
+      "pass": 33,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 10667.922565
+    }
+  ],
+  "controls": {
+    "immutableOperationContext": true,
+    "denyByDefaultAuthorization": true,
+    "sanitizedErrorContract": true,
+    "recursiveSecretRedaction": true,
+    "appendOnlyTenantAudit": true,
+    "explicitTransactions": true,
+    "optimisticLocking": true,
+    "tenantScopedIdempotency": true,
+    "freshAndUpgradeMigration": true,
+    "routeCapabilitiesDenyByDefault": true,
+    "postgresGateRejectsSkippedTodoCancelledOrEmpty": true
+  },
+  "limitations": [
+    "Esta evidência fecha apenas T009-T025; fases T026-T153 continuam pendentes.",
+    "Nenhum deploy remoto foi realizado nesta evidência."
+  ]
+}
