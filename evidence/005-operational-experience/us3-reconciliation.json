@@ -1,0 +1,58 @@
+{
+  "feature": "005-operational-experience",
+  "capturedAt": "2026-09-20T13:40:37Z",
+  "status": "passed",
+  "completed": {
+    "US3": [
+      "T081",
+      "T082",
+      "T083",
+      "T084",
+      "T085",
+      "T086",
+      "T087",
+      "T098",
+      "T102",
+      "T103"
+    ],
+    "reconciled": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+    ]
+  },
+  "tests": {
+    "total": 40,
+    "passed": 40,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "requirements": [
+    "FR-015",
+    "FR-016",
+    "FR-017",
+    "FR-018",
+    "FR-019",
+    "FR-020",
+    "FR-021",
+    "SC-006",
+    "SC-007",
+    "SC-008"
+  ],
+  "gate": {
+    "status": "PASS",
+    "command": "node scripts/acceptance-gate.mjs",
+    "exitCode": 0
+  },
+  "nextBlockers": [],
+  "notes": [
+    "T087 has a single task row in tasks.md; remaining mentions are dependency/evidence references, not duplicate tasks.",
+    "Acceptance evidence refreshed for OE01-OE05 with PostgreSQL/Chromium where required and zero skipped mandatory tests."
+  ]
+}

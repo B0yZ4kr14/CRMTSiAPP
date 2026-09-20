@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 function keyFromEnvironment(value = process.env.CHANNEL_SECRET_KEY) {
   if (!value) return null;
@@ -29,4 +29,8 @@ function decryptCredentials(value, key = keyFromEnvironment()) {
   return parsed;
 }
 
-module.exports = { decryptCredentials, encryptCredentials, keyFromEnvironment };
+function rotateSecret(oldSecret, newSecret) {
+  return newSecret;
+}
+
+module.exports = { decryptCredentials, encryptCredentials, rotateSecret };

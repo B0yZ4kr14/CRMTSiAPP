@@ -7,9 +7,9 @@ Requires=postgresql.service
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt/tsi-stack/apps/crm/crmtsiapp/local-crm
+WorkingDirectory=/opt/tsi-stack/apps/crm/crmtsiapp
 EnvironmentFile=/etc/crmtsiapp/crmtsiapp.env
-ExecStart=/usr/bin/node /opt/tsi-stack/apps/crm/crmtsiapp/local-crm/outbox-worker-main.js
+ExecStart=/usr/bin/node /opt/tsi-stack/apps/crm/crmtsiapp/outbox-worker-main.js
 Restart=always
 RestartSec=5
 UMask=0077

@@ -12,7 +12,7 @@ function createAdapters(options = {}) {
 
 async function loadJobChannel(pool, job) {
   if (!job.channel_id) return { provider: job.provider, config: {} };
-  const { rows } = await pool.query(`select c.id,c.provider,c.config,sv.ciphertext from channels c join channel_credentials cc on cc.channel_id=c.id join secrets s on s.id=cc.secret_id join secret_versions sv on sv.id=s.active_version_id where c.id=$1`, [job.channel_id]);
+  const { rows } = await pool.query(`select c.id,c.tenant_id,c.provider,c.config,sv.ciphertext from channels c join channel_credentials cc on cc.channel_id=c.id join secrets s on s.id=cc.secret_id join secret_versions sv on sv.id=s.active_version_id where c.id=$1 and c.tenant_id=$2`, [job.channel_id, job.tenant_id]);
   if (!rows[0]) throw new Error('channel credentials unavailable');
   let credentials;
   try { credentials = decryptCredentials(rows[0].ciphertext); } catch { throw new Error('channel credentials are unavailable'); }

@@ -69,11 +69,11 @@ function createChannelWebhookService({ pool, loadChannel }) {
       let duplicates = 0;
       for (const event of events) {
         const result = await pool.query(
-          `insert into webhook_events(id,channel_id,provider_event_id,event_type,signature_valid,payload,status,available_at)
-           values($1,$2,$3,$4,true,$5,'pending',now())
+          `insert into webhook_events(id,channel_id,tenant_id,provider_event_id,event_type,signature_valid,payload,status,available_at)
+           values($1,$2,$3,$4,$5,true,$6,'pending',now())
            on conflict(channel_id,provider_event_id) do nothing
            returning id`,
-          [crypto.randomUUID(), channelId, event.providerEventId, event.type, JSON.stringify(event)],
+          [crypto.randomUUID(), channelId, value.tenant_id, event.providerEventId, event.type, JSON.stringify(event)],
         );
         if (!result.rowCount) { duplicates += 1; continue; }
         accepted += 1;

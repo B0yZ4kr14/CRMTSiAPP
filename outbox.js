@@ -34,11 +34,11 @@ async function markDelivered(pool, job, result) {
       update outbox_jobs
       set status='sent', provider_message_id=$2, locked_at=null, locked_by=null, lease_token=null, updated_at=now()
       where id=$1 and status='processing' and locked_by=$3 and lease_token=$4
-      returning idempotency_key
+      returning idempotency_key, tenant_id
     )
     update conversation_messages
     set provider_message_id=$2, delivery_status='sent'
-    where id = (select idempotency_key from accepted)
+    where id = (select idempotency_key from accepted) and tenant_id = (select tenant_id from accepted)
   `, [job.id, result.providerMessageId, job.locked_by, job.lease_token]);
   return response.rowCount > 0;
 }
@@ -57,10 +57,10 @@ async function markFailed(pool, job, error) {
       ), linked_message as (
         update conversation_messages
         set delivery_status='failed'
-        where id = (select idempotency_key from failed)
+        where id = (select idempotency_key from failed) and tenant_id = (select tenant_id from failed)
       )
-      insert into failed_jobs(id,outbox_job_id,reason,payload)
-      select $4, id, $3, payload from failed
+      insert into failed_jobs(id,tenant_id,outbox_job_id,reason,payload)
+      select $4, tenant_id, id, $3, payload from failed
       on conflict(outbox_job_id) do nothing
     `, [job.id, attempts, failure.reason, crypto.randomUUID(), job.locked_by, job.lease_token]);
     return { dead: true };
@@ -70,12 +70,13 @@ async function markFailed(pool, job, error) {
   return { dead: false, retryAt };
 }
 
-async function enqueue(pool, { id = crypto.randomUUID(), channelId = null, conversationId = null, kind, payload = {}, idempotencyKey = id, maxAttempts = 8 }) {
+async function enqueue(pool, { id = crypto.randomUUID(), tenantId, channelId = null, conversationId = null, kind, payload = {}, idempotencyKey = id, maxAttempts = 8 }) {
   if (!['text', 'template'].includes(kind)) throw new Error('unsupported outbox kind');
-  const { rows } = await pool.query(`insert into outbox_jobs(id,channel_id,conversation_id,kind,payload,idempotency_key,max_attempts)
-    values($1,$2,$3,$4,$5,$6,$7)
+  if (!tenantId) throw new Error('tenant context is required for outbound enqueue');
+  const { rows } = await pool.query(`insert into outbox_jobs(id,tenant_id,channel_id,conversation_id,kind,payload,idempotency_key,max_attempts)
+    values($1,$2,$3,$4,$5,$6,$7,$8)
     on conflict(idempotency_key) do update set idempotency_key=excluded.idempotency_key
-    returning id,status`, [id, channelId, conversationId, kind, JSON.stringify(payload), idempotencyKey, maxAttempts]);
+    returning id,tenant_id,status`, [id, tenantId, channelId, conversationId, kind, JSON.stringify(payload), idempotencyKey, maxAttempts]);
   return rows[0];
 }
 

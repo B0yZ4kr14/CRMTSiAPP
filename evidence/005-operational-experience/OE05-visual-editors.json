@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "feature": "005-operational-experience",
+  "suiteId": "OE05-visual-editors",
+  "releaseHash": "working-tree",
+  "startedAt": "2026-09-20T15:39:29.425Z",
+  "completedAt": "2026-09-20T15:39:33.133Z",
+  "exitCode": 0,
+  "status": "passed",
+  "tests": {
+    "total": 30,
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "requirements": [
+    "FR-022",
+    "FR-023",
+    "FR-024",
+    "FR-025",
+    "FR-026",
+    "FR-027",
+    "FR-028",
+    "SC-009",
+    "SC-010"
+  ],
+  "command": "node --test test/automation-graph-schema.test.js test/automation-graph-validation.test.js test/automation-simulation-v2.test.js test/automation-version-pinning.test.js test/automation-editor-service.test.js test/automation-editor-http-contract.test.js test/browser-visual-editors.test.js test/campaign-content-schema.test.js test/campaign-content-security.test.js test/campaign-preview-parity.test.js test/campaign-editor-service.test.js test/campaign-editor-http-contract.test.js test/browser-campaign-preview-sandbox.test.js test/postgres-automation-versions.test.js test/postgres-campaign-versions.test.js",
+  "outputTail": "ed version in trace and persistence payload\nok 14 - automation execution retains the exact published version in trace and persistence payload\n  ---\n  duration_ms: 1.985398\n  type: 'test'\n  ...\n# Subtest: Chromium campaign preview frame is sandboxed without same-origin and has restrictive CSP\nok 15 - Chromium campaign preview frame is sandboxed without same-origin and has restrictive CSP\n  ---\n  duration_ms: 986.223031\n  type: 'test'\n  ...\n# Subtest: Chromium visual editor supports keyboard-equivalent ordering and aria-live feedback\nok 16 - Chromium visual editor supports keyboard-equivalent ordering and aria-live feedback\n  ---\n  duration_ms: 949.372519\n  type: 'test'\n  ...\n# Subtest: campaign content accepts allowlisted blocks, marks, variables and validates limits\nok 17 - campaign content accepts allowlisted blocks, marks, variables and validates limits\n  ---\n  duration_ms: 2.673085\n  type: 'test'\n  ...\n# Subtest: campaign content normalizes a deterministic canonical representation\nok 18 - campaign content normalizes a deterministic canonical representation\n  ---\n  duration_ms: 1.740234\n  type: 'test'\n  ...\n# Subtest: campaign channel capability profiles are explicit and versioned\nok 19 - campaign channel capability profiles are explicit and versioned\n  ---\n  duration_ms: 1.218938\n  type: 'test'\n  ...\n# Subtest: campaign compiler escapes scripts, event handlers, css, svg and unsafe URLs\nok 20 - campaign compiler escapes scripts, event handlers, css, svg and unsafe URLs\n  ---\n  duration_ms: 2.944438\n  type: 'test'\n  ...\n# Subtest: campaign compiler allows only safe https/http URLs and resolves approved variables\nok 21 - campaign compiler allows only safe https/http URLs and resolves approved variables\n  ---\n  duration_ms: 0.985957\n  type: 'test'\n  ...\n# Subtest: campaign editor contracts create preview publish and restore drafts\nok 22 - campaign editor contracts create preview publish and restore drafts\n  ---\n  duration_ms: 5.690342\n  type: 'test'\n  ...\n# Subtest: campaign editor drafts use CAS and publish immutable fingerprinted versions\nok 23 - campaign editor drafts use CAS and publish immutable fingerprinted versions\n  ---\n  duration_ms: 8.501566\n  type: 'test'\n  ...\n# Subtest: campaign editor restore creates a fresh published version and dispatch reference pins it\nok 24 - campaign editor restore creates a fresh published version and dispatch reference pins it\n  ---\n  duration_ms: 2.480109\n  type: 'test'\n  ...\n# Subtest: campaign preview and channel dispatch compile from one canonical output\nok 25 - campaign preview and channel dispatch compile from one canonical output\n  ---\n  duration_ms: 2.135851\n  type: 'test'\n  ...\n# Subtest: campaign compiler produces channel-specific capability-profile output\nok 26 - campaign compiler produces channel-specific capability-profile output\n  ---\n  duration_ms: 0.537811\n  type: 'test'\n  ...\n# Subtest: PostgreSQL automation drafts enforce tenant-scoped CAS and stale writes do not overwrite\nok 27 - PostgreSQL automation drafts enforce tenant-scoped CAS and stale writes do not overwrite\n  ---\n  duration_ms: 1617.363995\n  type: 'test'\n  ...\n# Subtest: PostgreSQL automation versions are append-only and execution pins the exact published version\nok 28 - PostgreSQL automation versions are append-only and execution pins the exact published version\n  ---\n  duration_ms: 1622.694776\n  type: 'test'\n  ...\n# Subtest: PostgreSQL campaign drafts enforce tenant-scoped CAS and canonical fingerprint changes\nok 29 - PostgreSQL campaign drafts enforce tenant-scoped CAS and canonical fingerprint changes\n  ---\n  duration_ms: 1650.293698\n  type: 'test'\n  ...\n# Subtest: PostgreSQL campaign versions are immutable and dispatch jobs pin version and fingerprint\nok 30 - PostgreSQL campaign versions are immutable and dispatch jobs pin version and fingerprint\n  ---\n  duration_ms: 1782.22026\n  type: 'test'\n  ...\n1..30\n# tests 30\n# suites 0\n# pass 30\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3639.803728\n"
+}

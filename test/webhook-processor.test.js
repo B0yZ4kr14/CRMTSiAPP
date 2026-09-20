@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const crypto = require('crypto');
+const { DEFAULT_TENANT_ID } = require('../domain-schema');
 const { processWebhookEvent } = require('../webhook-processor');
 
 class DedupPool {
@@ -9,9 +10,10 @@ class DedupPool {
     this.messages = new Map();
   }
   async query(sql, values) {
+    if (sql.includes('pg_advisory_xact_lock')) return { rows: [{}], rowCount: 1 };
     if (sql.includes('select id from conversation_messages')) {
-      const id = values[0];
-      const found = Array.from(this.messages.values()).find(m => m.provider_message_id === id);
+      const [channelId, id] = values;
+      const found = Array.from(this.messages.values()).find(m => m.provider_channel_id === channelId && m.provider_message_id === id);
       return { rows: found ? [found] : [], rowCount: found ? 1 : 0 };
     }
     if (sql.includes('select id from conversations')) {
@@ -26,13 +28,21 @@ class DedupPool {
       return { rowCount: 1, rows: [{ id }] };
     }
     if (sql.includes('insert into conversation_messages')) {
-      const [id, convId, direction, body, provId] = values;
-      const exists = Array.from(this.messages.values()).some(m => m.provider_message_id === provId);
+      const [id, convId, body, channelId, provId] = values;
+      const exists = Array.from(this.messages.values()).some(m => m.provider_channel_id === channelId && m.provider_message_id === provId);
       if (exists) return { rowCount: 0, rows: [] };
-      this.messages.set(id, { id, conversation_id: convId, direction, body, provider_message_id: provId });
+      this.messages.set(id, { id, conversation_id: convId, direction: 'inbound', body, provider_channel_id: channelId, provider_message_id: provId });
       return { rowCount: 1, rows: [{ id }] };
     }
     if (sql.includes('update conversations')) return { rowCount: 1 };
+    if (sql.includes('insert into realtime_events')) {
+      return { rowCount: 1, rows: [{
+        sequence: 1, id: values[0], tenant_id: values[1], event_type: values[2],
+        aggregate_type: values[3], aggregate_id: values[4], aggregate_version: values[5],
+        payload: JSON.parse(values[6]), audience: JSON.parse(values[7]),
+        occurred_at: new Date(), expires_at: values[9],
+      }] };
+    }
     return { rows: [], rowCount: 0 };
   }
 }
@@ -44,32 +54,46 @@ test('P1-01: webhook deduplication - first inbound creates conversation and mess
     providerEventId: 'wamid.dedup-001',
     message: { from: '5511999999999', text: { body: 'Olá' }, timestamp: '1700000000' },
     contacts: [{ wa_id: '5511999999999', profile: { name: 'Maria' } }]
-  }, { channelId: 'channel-test-1' });
+  }, { channelId: 'channel-test-1', tenantId: DEFAULT_TENANT_ID });
   
   assert.strictEqual(pool.conversations.size, 1, 'Deveria criar exatamente 1 conversa');
   assert.strictEqual(pool.messages.size, 1, 'Deveria criar exatamente 1 mensagem');
 });
 
-test('P1-01: webhook deduplication - same providerEventId is rejected/deduplicated', async () => {
-  const pool = new DedupPool();
-  
-  await processWebhookEvent(pool, {
-    type: 'message',
-    providerEventId: 'wamid.dedup-001',
+test('inbound processing claims channel-scoped provider identity inside the transaction before domain effects', async () => {
+  const calls = [];
+  const client = {
+    async query(sql, values) {
+      calls.push({ sql, values });
+      if (sql === 'begin' || sql === 'commit' || sql === 'rollback') return { rowCount: 0, rows: [] };
+      if (sql.includes('pg_advisory_xact_lock')) return { rowCount: 1, rows: [{}] };
+      if (sql.includes('select id from conversation_messages')) return { rowCount: 1, rows: [{ id: 'existing' }] };
+      throw new Error(`unexpected query after duplicate claim: ${sql}`);
+    },
+    release() {},
+  };
+  await processWebhookEvent({ connect: async () => client }, {
+    type: 'message', providerEventId: 'same-id',
     message: { from: '5511999999999', text: { body: 'Olá' }, timestamp: '1700000000' },
-    contacts: [{ wa_id: '5511999999999', profile: { name: 'Maria' } }]
-  }, { channelId: 'channel-test-1' });
-  
-  const initialConv = pool.conversations.size;
-  const initialMsg = pool.messages.size;
-  
-  await processWebhookEvent(pool, {
-    type: 'message',
-    providerEventId: 'wamid.dedup-001',
-    message: { from: '5511999999999', text: { body: 'Duplicado' }, timestamp: '1700000001' },
-    contacts: [{ wa_id: '5511999999999', profile: { name: 'Maria' } }]
-  }, { channelId: 'channel-test-1' });
-  
-  assert.strictEqual(pool.conversations.size, initialConv, 'Não deveria criar nova conversa para providerEventId duplicado');
-  assert.strictEqual(pool.messages.size, initialMsg, 'Não deveria criar nova mensagem para providerEventId duplicado');
+  }, { channelId: '11111111-1111-1111-1111-111111111111', tenantId: DEFAULT_TENANT_ID });
+  assert.equal(calls[0].sql, 'begin');
+  assert.match(calls[1].sql, /pg_advisory_xact_lock/);
+  assert.deepEqual(calls[2].values, ['11111111-1111-1111-1111-111111111111', 'same-id']);
+  assert.equal(calls.at(-1).sql, 'rollback');
+  assert.equal(calls.some(call => call.sql.includes('insert into conversations')), false);
+});
+
+test('inbound identity is scoped by channel so providers may reuse message ids', async () => {
+  const seen = [];
+  const pool = { async query(sql, values) {
+    if (sql.includes('select id from conversation_messages')) {
+      seen.push(values);
+      return { rowCount: 1, rows: [{ id: 'existing' }] };
+    }
+    return { rowCount: 0, rows: [] };
+  } };
+  const event = { type: 'message', providerEventId: 'reused', message: { from: '1', text: { body: 'x' } } };
+  await processWebhookEvent(pool, event, { channelId: 'channel-a', tenantId: DEFAULT_TENANT_ID });
+  await processWebhookEvent(pool, event, { channelId: 'channel-b', tenantId: DEFAULT_TENANT_ID });
+  assert.deepEqual(seen, [['channel-a', 'reused'], ['channel-b', 'reused']]);
 });

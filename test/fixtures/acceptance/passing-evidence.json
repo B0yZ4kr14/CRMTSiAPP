@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "G02-unit-domain",
+  "releaseHash": "fixture-release",
+  "startedAt": "2026-09-19T05:00:00.000Z",
+  "completedAt": "2026-09-19T05:00:10.000Z",
+  "exitCode": 0,
+  "tests": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "todo": 0
+  },
+  "status": "passed",
+  "externalBlocker": null,
+  "artifacts": []
+}

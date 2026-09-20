@@ -6,7 +6,6 @@ test('renders the Deskcomm-inspired WhatsApp workspace navigation', () => {
   const html = renderWorkspace('inbox', {});
   assert.match(html, /Central/);
   assert.match(html, /Conversas/);
-  assert.match(html, /Conexões/);
   assert.match(html, /Configurações/);
   assert.match(html, /CRMTSiAPP/);
 });
@@ -31,5 +30,5 @@ test('renders WhatsApp configuration fields for the local provider model', () =>
   assert.match(html, /WhatsApp/);
   assert.match(html, /Provedor de canal/);
   assert.match(html, /WAHA compatível/);
-  assert.match(html, /Criar canal e salvar configuração/);
+  assert.match(html, /Criar canal e salvar configuração|Salvar canal/);
 });

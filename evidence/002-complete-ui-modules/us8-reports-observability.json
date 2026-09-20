@@ -1,0 +1,36 @@
+{
+  "feature": "002-complete-ui-modules",
+  "userStory": "US8 - Real Reports and Operational Observability",
+  "timestamp": "2026-09-20T11:19:23Z",
+  "local": {
+    "command": "npm run test",
+    "tests": 472,
+    "passed": 427,
+    "failed": 0,
+    "skipped": 45,
+    "focusedStatusTests": { "tests": 5, "passed": 5, "failed": 0 },
+    "reportingTests": ["test/report-metrics.test.js", "test/report-workspace-export.test.js", "test/report-routes.test.js"],
+    "observabilityTests": ["test/observability-complete.test.js", "test/observability-routes.test.js", "test/alerting.test.js", "test/alert-persistence.test.js"]
+  },
+  "deployment": {
+    "target": "vpstsiapp:/opt/tsi-stack/apps/crm/crmtsiapp",
+    "deploySession": "tsi-crmtsiapp-us8-status-fix",
+    "deployExitCode": 0,
+    "migration": "MIGRATION_OK",
+    "backup": "/opt/tsi-stack/backups/crmtsiapp-before-us8-20260920T111823Z"
+  },
+  "remoteValidation": {
+    "session": "tsi-crmtsiapp-us8-final-validate",
+    "exitCode": 0,
+    "services": ["crmtsiapp.service active", "crmtsiapp-outbox-worker.service active", "crmtsiapp-webhook-worker.service active"],
+    "restarts": 0,
+    "https": { "live": "200 ok", "ready": "200 ok/db=1" }
+  },
+  "browserHarnessAuthenticated": {
+    "engine": "Chromium via browser-harness/CDP",
+    "reports": { "status": 200, "heading": true, "exportLink": true, "p95Metric": true, "url": "https://crm.tsiapp.io/reports" },
+    "status": { "status": 200, "heading": true, "readiness": "pronto", "degraded": "nenhum", "alerts": "Nenhum alerta aberto.", "url": "https://crm.tsiapp.io/status" },
+    "export": { "status": 200, "contentType": "text/csv; charset=utf-8", "contentDisposition": "attachment; filename=\"crmtsiapp-report.csv\"" },
+    "screenshots": ["/tmp/crmtsiapp-us8-reports-authenticated-final.png", "/tmp/crmtsiapp-us8-status-authenticated-final.png"]
+  }
+}

@@ -1,4 +1,7 @@
 const crypto = require('crypto');
+const dns = require('node:dns').promises;
+const net = require('node:net');
+const { Agent } = require('undici');
 
 function safeEqual(left, right) {
   const a = Buffer.from(left || '');
@@ -36,20 +39,48 @@ function providerMessageId(value) {
   return id;
 }
 
+function isPublicAddress(address) {
+  if (net.isIP(address) === 4) {
+    const [a,b] = address.split('.').map(Number);
+    return !(a === 0 || a === 10 || a === 127 || (a === 169 && b === 254) || (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168) || a >= 224);
+  }
+  if (net.isIP(address) === 6) {
+    const normalized = address.toLowerCase();
+    return !(normalized === '::' || normalized === '::1' || normalized.startsWith('fc') || normalized.startsWith('fd') || /^fe[89ab]/.test(normalized) || normalized.startsWith('ff'));
+  }
+  return false;
+}
+
+async function safeWahaDispatcher(baseUrl, lookup = dns.lookup) {
+  const target = new URL(baseUrl);
+  const answers = await lookup(target.hostname, { all: true, verbatim: true });
+  if (!answers.length || answers.some(answer => !isPublicAddress(answer.address))) throw new Error('WAHA endpoint resolves to a non-public address');
+  const pinned = answers[0];
+  return new Agent({ connect: { lookup(hostname, options, callback) {
+    if (hostname !== target.hostname) return callback(new Error('WAHA redirect hostname is not allowed'));
+    callback(null, pinned.address, pinned.family);
+  } } });
+}
+
 class WahaAdapter {
-  constructor({ fetchFn = fetch } = {}) { this.fetchFn = fetchFn; }
+  constructor({ fetchFn = fetch, lookup = dns.lookup, dispatcherFactory = safeWahaDispatcher } = {}) { this.fetchFn = fetchFn; this.lookup = lookup; this.dispatcherFactory = dispatcherFactory; }
   config(channel) { return channel?.config || {}; }
+  async request(baseUrl, url, options) {
+    const dispatcher = await this.dispatcherFactory(baseUrl, this.lookup);
+    try { return await this.fetchFn(url, { ...requestOptions(options), dispatcher }); }
+    finally { await dispatcher.close?.(); }
+  }
   async health(channel) {
     const { baseUrl, sessionName, apiKey } = this.config(channel);
     if (!baseUrl || !sessionName || !apiKey) return { state: 'unconfigured' };
-    const response = await this.fetchFn(new URL(`/api/sessions/${encodeURIComponent(sessionName)}`, baseUrl), requestOptions({ headers: { 'X-Api-Key': apiKey, accept: 'application/json' } }, 5000));
+    const response = await this.request(baseUrl, new URL(`/api/sessions/${encodeURIComponent(sessionName)}`, baseUrl), { headers: { 'X-Api-Key': apiKey, accept: 'application/json' } });
     if (!response.ok) throw new Error(`WAHA health HTTP ${response.status}`);
     const body = await response.json();
     return { state: String(body.status || body.state || 'unknown').toLowerCase(), raw: body };
   }
   async startSession(channel) {
     const { baseUrl, sessionName, apiKey } = this.config(channel);
-    const response = await this.fetchFn(new URL(`/api/sessions/${encodeURIComponent(sessionName)}/start`, baseUrl), requestOptions({ method: 'POST', headers: { 'X-Api-Key': apiKey } }));
+    const response = await this.request(baseUrl, new URL(`/api/sessions/${encodeURIComponent(sessionName)}/start`, baseUrl), { method: 'POST', headers: { 'X-Api-Key': apiKey } });
     if (!response.ok) throw new Error(`WAHA start HTTP ${response.status}`);
     const body = await response.json().catch(() => ({}));
     return { state: String(body.status || body.state || 'starting').toLowerCase() };
@@ -57,13 +88,13 @@ class WahaAdapter {
   async getQr(channel) {
     const { baseUrl, sessionName, apiKey } = this.config(channel);
     const url = new URL(`/api/${encodeURIComponent(sessionName)}/auth/qr?format=base64`, baseUrl);
-    const response = await this.fetchFn(url, requestOptions({ headers: { 'X-Api-Key': apiKey } }));
+    const response = await this.request(baseUrl, url, { headers: { 'X-Api-Key': apiKey } });
     if (!response.ok) throw new Error(`WAHA QR HTTP ${response.status}`);
     return { qr: await response.text(), expiresAt: null };
   }
   async sendText({ channel, to, body }) {
     const { baseUrl, sessionName, apiKey } = this.config(channel);
-    const response = await this.fetchFn(new URL('/api/sendText', baseUrl), requestOptions({ method: 'POST', headers: { 'content-type': 'application/json', 'X-Api-Key': apiKey }, body: JSON.stringify({ session: sessionName, chatId: to.includes('@') ? to : `${to}@c.us`, text: body }) }));
+    const response = await this.request(baseUrl, new URL('/api/sendText', baseUrl), { method: 'POST', headers: { 'content-type': 'application/json', 'X-Api-Key': apiKey }, body: JSON.stringify({ session: sessionName, chatId: to.includes('@') ? to : `${to}@c.us`, text: body }) });
     if (!response.ok) throw new Error(`WAHA send HTTP ${response.status}`);
     const payload = await response.json();
     return { providerMessageId: providerMessageId(payload.id || payload.key?.id || payload.messageId), status: 'sent' };
@@ -106,11 +137,11 @@ class MetaAdapter {
     const { graphVersion, phoneNumberId, accessToken } = this.config(channel);
     if (!graphVersion || !phoneNumberId || !accessToken) throw new Error('Meta channel is unconfigured');
     const url = `https://graph.facebook.com/${encodeURIComponent(graphVersion)}/${encodeURIComponent(phoneNumberId)}/messages`;
-    const response = await this.fetchFn(url, { method: 'POST', headers: { authorization: `Bearer ${accessToken}`, 'content-type': 'application/json' }, body: JSON.stringify({ messaging_product:'whatsapp', to, ...serializeTemplatePayload({ name, language, variables }) }) });
+    const response = await this.fetchFn(url, requestOptions({ method: 'POST', headers: { authorization: `Bearer ${accessToken}`, 'content-type': 'application/json' }, body: JSON.stringify({ messaging_product:'whatsapp', to, ...serializeTemplatePayload({ name, language, variables }) }) }));
     if (!response.ok) { const error = new Error(`Meta template HTTP ${response.status}`); error.status = response.status; throw error; }
     const payload = await response.json();
-    return { providerMessageId: String(payload.messages?.[0]?.id), status: 'sent' };
+    return { providerMessageId: providerMessageId(payload.messages?.[0]?.id), status: 'sent' };
   }
 }
 
-module.exports = { FakeAdapter, MetaAdapter, WahaAdapter, safeEqual, serializeTemplatePayload, verifyMetaSignature };
+module.exports = { FakeAdapter, MetaAdapter, WahaAdapter, isPublicAddress, safeEqual, safeWahaDispatcher, serializeTemplatePayload, verifyMetaSignature };

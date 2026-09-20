@@ -6,6 +6,12 @@ test('operational sidebar never advertises a route that the CRM does not render'
   const html = renderWorkspace('inbox', {});
   assert.match(html, /href="\/contacts"/);
   assert.match(html, /href="\/leads"/);
+  assert.match(html, /href="\/dashboard"/);
+  assert.match(html, /href="\/segments"/);
+  assert.match(html, /href="\/campaigns"/);
+  assert.match(html, /href="\/automation"/);
+  assert.match(html, /href="\/ia"/);
+  assert.match(html, /href="\/reports"/);
   const settings = renderWorkspace('settings/channels', {});
   assert.doesNotMatch(settings, /href="\/settings\/catalog">Atendimento/);
   assert.match(settings, /href="\/settings\/channels">Canais/);

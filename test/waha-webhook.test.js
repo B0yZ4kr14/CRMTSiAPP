@@ -16,7 +16,7 @@ test('WAHA webhook verifies SHA-512 raw-body HMAC and normalizes only inbound me
   const calls = [];
   const service = createChannelWebhookService({
     pool: { query: async (sql, values) => { calls.push({ sql, values }); return sql.includes('insert into webhook_events') ? { rowCount: 1, rows: [{ id: 'event-1' }] } : { rowCount: 1, rows: [] }; } },
-    loadChannel: async () => ({ provider: 'waha', config: { sessionName: 'support' }, credentials: { apiKey: 'waha-secret' } }),
+    loadChannel: async () => ({ provider: 'waha', tenant_id: '11111111-1111-4111-8111-111111111111', config: { sessionName: 'support' }, credentials: { apiKey: 'waha-secret' } }),
   });
   const res = response();
   await service.receive({ headers: { 'x-webhook-hmac-algorithm': 'sha512', 'x-webhook-hmac': signedWahaBody(rawBody, 'waha-secret') }, rawBody, body: JSON.parse(rawBody) }, res, 'channel-1');
@@ -25,7 +25,8 @@ test('WAHA webhook verifies SHA-512 raw-body HMAC and normalizes only inbound me
   const insert = calls.find(c => c.sql.includes('insert into webhook_events'));
   assert.ok(insert);
   assert.equal(insert.values[1], 'channel-1');
-  assert.equal(insert.values[2], 'false_5511999999999@c.us_in-1');
+  assert.equal(insert.values[2], '11111111-1111-4111-8111-111111111111');
+  assert.equal(insert.values[3], 'false_5511999999999@c.us_in-1');
 });
 
 test('WAHA webhook rejects an invalid HMAC before persistence and ignores outbound echoes', async () => {

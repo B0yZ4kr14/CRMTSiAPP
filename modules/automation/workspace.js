@@ -1,0 +1,18 @@
+const { escapeHtml } = require('../marketing/content-compiler');
+
+function renderAutomationWorkspace({ rules = [], runs = [], csrfToken = '', graph = null, errors = [] } = {}) {
+  const rows = rules.map(rule => `<tr><td>${escapeHtml(rule.name)}</td><td>${escapeHtml(rule.trigger)}</td><td>${escapeHtml(rule.status)}</td><td>v${escapeHtml(rule.version)}</td></tr>`).join('') || '<tr><td colspan="4">Nenhuma automação configurada.</td></tr>';
+  const graphEditor = graph ? renderAutomationEditor({ graph, errors, csrfToken }) : '';
+  return `<section aria-labelledby="automation-title"><h1 id="automation-title">Automações</h1><p>Regras têm versões imutáveis e podem ser simuladas antes da ativação.</p><table><thead><tr><th>Nome</th><th>Gatilho</th><th>Status</th><th>Versão</th></tr></thead><tbody>${rows}</tbody></table><p data-run-count="${runs.length}">Execuções recentes: ${runs.length}</p><input type="hidden" name="csrf_token" value="${escapeHtml(csrfToken)}">${graphEditor}</section>`;
+}
+
+function renderAutomationEditor(state = {}) {
+  const graph = state.graph || { nodes: [], edges: [] };
+  const errors = state.errors || [];
+  const csrf = state.csrfToken ? `<input type="hidden" name="csrf_token" value="${escapeHtml(state.csrfToken)}">` : '';
+  const nodeRows = graph.nodes.map(node => `<li data-node-id="${escapeHtml(node.id)}" tabindex="0"><strong>${escapeHtml(node.type)}</strong><span>${escapeHtml(JSON.stringify(node.config || {}))}</span><button type="button" data-action="move-up" aria-label="Mover nó ${escapeHtml(node.id)} para cima">↑</button><button type="button" data-action="move-down" aria-label="Mover nó ${escapeHtml(node.id)} para baixo">↓</button></li>`).join('');
+  const errorRows = errors.map(error => `<li data-error-code="${escapeHtml(error.code)}">${escapeHtml(error.nodeId || error.edge?.from || 'Grafo')}: ${escapeHtml(error.code)}</li>`).join('');
+  return `<section class="visual-editor automation-editor" aria-labelledby="automation-editor-title"><header><h1 id="automation-editor-title">Editor de Automação</h1><p>Crie um fluxo por blocos; todos os controles possuem equivalente em lista e teclado.</p></header><div id="automation-editor-status" role="status" aria-live="polite"></div><div class="editor-layout"><section class="automation-canvas" aria-label="Canvas de automação" data-graph='${escapeHtml(JSON.stringify(graph))}'><p>Canvas progressivo: use a lista abaixo se preferir teclado.</p></section><section aria-label="Lista de nós"><h2>Nós</h2><ol id="automation-node-list" class="node-list">${nodeRows || '<li>Nenhum nó criado</li>'}</ol><form id="automation-node-form" method="post"><label>Tipo de nó<select name="type"><option value="trigger.conversation_opened">Gatilho: conversa aberta</option><option value="trigger.message_received">Gatilho: mensagem recebida</option><option value="action.assign_queue">Ação: atribuir fila</option><option value="action.add_tag">Ação: adicionar tag</option><option value="action.send_template">Ação: enviar template</option></select></label><label>Configuração JSON<textarea name="config" required>{}</textarea></label>${csrf}<button type="submit">Adicionar nó</button></form></section></div><section aria-label="Erros de validação"><h2>Validação</h2><ul id="automation-errors" aria-live="assertive">${errorRows || '<li>Sem erros</li>'}</ul></section><div class="form-actions"><button type="button" data-action="validate">Validar</button><button type="button" data-action="simulate">Simular</button><button type="button" data-action="publish">Publicar</button></div></section>`;
+}
+
+module.exports = { renderAutomationWorkspace, renderAutomationEditor };

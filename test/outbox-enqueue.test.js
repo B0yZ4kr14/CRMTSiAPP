@@ -6,12 +6,12 @@ test('enqueue creates an idempotent pending outbox job for a channel message', a
   let call;
   const pool = { async query(sql, values) { call = { sql, values }; return { rows: [{ id: 'job-1' }] }; } };
   const result = await enqueue(pool, {
-    id: 'job-1', channelId: 'channel-1', conversationId: 'conversation-1', kind: 'text',
+    id: 'job-1', tenantId: '00000000-0000-4000-8000-000000000001', channelId: 'channel-1', conversationId: 'conversation-1', kind: 'text',
     payload: { to: '5511999999999', body: 'Olá' }, idempotencyKey: 'message-1',
   });
   assert.equal(result.id, 'job-1');
   assert.match(call.sql, /on conflict\(idempotency_key\) do update/);
-  assert.deepEqual(call.values.slice(0, 5), ['job-1', 'channel-1', 'conversation-1', 'text', JSON.stringify({ to: '5511999999999', body: 'Olá' })]);
+  assert.deepEqual(call.values.slice(0, 6), ['job-1', '00000000-0000-4000-8000-000000000001', 'channel-1', 'conversation-1', 'text', JSON.stringify({ to: '5511999999999', body: 'Olá' })]);
 });
 
 test('enqueue rejects unsupported job kinds before writing to PostgreSQL', async () => {
